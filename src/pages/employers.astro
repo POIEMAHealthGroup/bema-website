@@ -2,24 +2,83 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/Sections/PageHeader.astro";
 import Button from "../components/UI/Button.astro";
+import ImagePlaceholder from "../components/UI/ImagePlaceholder.astro";
+
+const employerCards = [
+  {
+    heading: "[PLACEHOLDER: Card 1 heading]",
+    body: "[PLACEHOLDER: Card 1 body]",
+  },
+  {
+    heading: "[PLACEHOLDER: Card 2 heading]",
+    body: "[PLACEHOLDER: Card 2 body]",
+  },
+  {
+    heading: "[PLACEHOLDER: Card 3 heading]",
+    body: "[PLACEHOLDER: Card 3 body]",
+  },
+];
 ---
 
-<!-- PHASE 1.2: Employer page content to be developed. Stub only at Phase 1.1 launch. -->
+<!-- PHASE 1.1: Employers page structure. Placeholder content to be populated separately. -->
 <BaseLayout
   title="For Employers | BEMA - Healthcare Access for Florida's Working Families"
   description="[PLACEHOLDER: Employers page SEO description - 120 to 155 characters]"
 >
   <PageHeader
     title="For Employers"
-    subtitle="[PLACEHOLDER: Employer value proposition - 1 sentence]"
+    subtitle="[PLACEHOLDER: Employer subheading]"
   />
 
   <section class="section-pad bg-bema-white">
     <div class="container">
+      <figure class="mx-auto max-w-4xl text-center">
+        <blockquote class="font-display text-3xl font-bold leading-tight text-bema-green md:text-5xl">
+          [PLACEHOLDER: Employer value statement]
+        </blockquote>
+        <figcaption class="mt-6 font-semibold text-bema-khaki">The BEMA Employer Program</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="section-pad bg-bema-white">
+    <div class="container grid gap-12 lg:grid-cols-2 lg:items-center">
+      <div>
+        <p class="eyebrow">THE PROGRAM</p>
+        <h2 class="mt-3">[PLACEHOLDER: Program section heading]</h2>
+        <p class="mt-6 text-lg text-bema-green/85">[PLACEHOLDER: Program section body]</p>
+      </div>
+      <ImagePlaceholder label="[PLACEHOLDER: Employer setting image]" />
+    </div>
+  </section>
+
+  <section class="section-pad bg-bema-khaki-light/20">
+    <div class="container">
+      <div class="mb-12 max-w-3xl">
+        <p class="eyebrow">[PLACEHOLDER: Employer card grid label]</p>
+        <h2>[PLACEHOLDER: Employer card grid heading]</h2>
+      </div>
+      <div class="grid gap-8 md:grid-cols-3">
+        {employerCards.map((card) => (
+          <article class="card p-6">
+            <svg viewBox="0 0 24 24" class="mb-5 h-10 w-10 text-bema-green" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <circle cx="12" cy="12" r="8"></circle>
+              <path d="M8 12h8M12 8v8" stroke-linecap="round"></path>
+            </svg>
+            <h3 class="text-2xl">{card.heading}</h3>
+            <p class="mt-4 text-bema-green/85">{card.body}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-bema-green py-16 text-bema-white">
+    <div class="container">
       <div class="max-w-4xl">
-        <p class="text-lg text-bema-green/85">[PLACEHOLDER: Employer page content - workforce health, predictable costs, CSR framing. To be developed in Phase 1.2.]</p>
+        <h2 class="text-bema-white">[PLACEHOLDER: Closing CTA heading]</h2>
         <div class="mt-8">
-          <Button href="/contact">Contact Us to Learn More</Button>
+          <Button href="/contact" variant="inverted">Contact Us to Learn More</Button>
         </div>
       </div>
     </div>

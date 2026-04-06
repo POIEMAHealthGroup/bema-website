@@ -3,6 +3,7 @@ const navItems = [
   { text: "Home", href: "/" },
   { text: "About", href: "/about" },
   { text: "Services", href: "/services" },
+  { text: "Employers", href: "/employers" },
   { text: "Find a Partner Clinic", href: "/providers" },
   { text: "Blog", href: "/blog" },
   { text: "Get Started", href: "/get-started" },
@@ -18,7 +19,7 @@ const isActivePath = (href: string) => {
 ---
 
 <nav class="hidden lg:block" aria-label="Primary navigation">
-  <ul class="flex items-center gap-5 xl:gap-6">
+  <ul class="flex items-center gap-4 xl:gap-5">
     {navItems.map((item) => {
       const isActive = isActivePath(item.href);
 

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+Pro:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,69 +6,66 @@
 
 @layer base {
   html {
-    @apply scroll-smooth;
-  }
-  
-  body {
-    @apply font-sans text-gray-800 bg-gray-50;
+    @apply scroll-smooth bg-bema-white;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-serif font-bold text-gray-900;
+  body {
+    @apply min-h-screen bg-bema-white font-body text-bema-green antialiased;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display font-bold text-bema-green;
+  }
+
+  h4,
+  h5,
+  h6 {
+    @apply font-body font-semibold text-bema-green;
   }
 
   h1 {
-    @apply text-4xl md:text-5xl;
+    @apply text-4xl leading-tight md:text-6xl;
   }
 
   h2 {
-    @apply text-3xl md:text-4xl;
+    @apply text-3xl leading-tight md:text-5xl;
   }
 
   h3 {
-    @apply text-2xl md:text-3xl;
+    @apply text-2xl leading-snug md:text-3xl;
   }
 
-  h4 {
-    @apply text-xl md:text-2xl;
+  p {
+    @apply leading-7;
   }
 
-  h5 {
-    @apply text-lg md:text-xl;
-  }
-
-  h6 {
-    @apply text-base md:text-lg;
+  a,
+  button,
+  input,
+  select,
+  textarea,
+  summary {
+    @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bema-khaki;
   }
 }
 
 @layer components {
   .container {
-    @apply px-4 mx-auto max-w-7xl;
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
   }
 
-  .btn {
-    @apply inline-flex items-center justify-center px-5 py-3 text-base font-medium transition-all rounded-md shadow-sm;
-  }
-
-  .btn-primary {
-    @apply text-white bg-primary-600 hover:bg-primary-700 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
-  }
-
-  .btn-secondary {
-    @apply text-white bg-secondary-600 hover:bg-secondary-700 focus:outline-none focus:ring-2 focus:ring-secondary-500 focus:ring-offset-2;
-  }
-
-  .btn-accent {
-    @apply text-white bg-accent-600 hover:bg-accent-700 focus:outline-none focus:ring-2 focus:ring-accent-500 focus:ring-offset-2;
-  }
-
-  .btn-outline {
-    @apply text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2;
+  .section-pad {
+    @apply py-16 md:py-24;
   }
 
   .card {
-    @apply overflow-hidden transition-all bg-white rounded-lg shadow-md hover:shadow-lg;
+    @apply overflow-hidden rounded-lg border border-bema-khaki/40 bg-bema-white transition-colors duration-200;
+  }
+
+  .eyebrow {
+    @apply text-sm font-semibold uppercase tracking-wide text-bema-khaki;
   }
 }
 
@@ -76,7 +73,6 @@ details > summary::-webkit-details-marker {
   display: none;
 }
 
-/* accordion effect */
 details > summary svg {
   transition: transform 0.2s ease;
 }

@@ -1,0 +1,25 @@
+---
+export interface Props {
+  label: string;
+  class?: string;
+  minHeight?: string;
+}
+
+const {
+  label,
+  class: className = "",
+  minHeight = "min-h-80",
+} = Astro.props;
+---
+
+<div
+  role="img"
+  aria-label={label}
+  class:list={[
+    "flex items-center justify-center rounded-lg border border-bema-khaki/40 bg-bema-khaki-light/40 p-6 text-center text-sm font-medium text-bema-green",
+    minHeight,
+    className,
+  ]}
+>
+  <span>{label}</span>
+</div>

@@ -9,11 +9,23 @@ export interface Props {
   dataSpeaker?: string;
   dataDate?: string;
   href?: string;
+  class?: string;
   className?: string;
-  imageLayout?: 'top' | 'background';
+  imageLayout?: "top" | "background";
 }
 
-const { title, image, href, className = "", imageLayout = 'top', dataSeries, dataSpeaker, dataDate} = Astro.props;
+const {
+  title,
+  image,
+  href,
+  class: classProp = "",
+  className = "",
+  imageLayout = "top",
+  dataSeries,
+  dataSpeaker,
+  dataDate,
+  ...rest
+} = Astro.props;
 const Element = href ? "a" : "div";
 ---
 
@@ -24,33 +36,41 @@ const Element = href ? "a" : "div";
   data-speaker={dataSpeaker}
   data-date={dataDate}
   class:list={[
-    'card group overflow-hidden',
-    { 'relative': imageLayout === 'background' },
-    className
+    "card group block",
+    { "relative min-h-80": imageLayout === "background" },
+    className,
+    classProp,
   ]}
+  {...rest}
 >
   {image && (
     <div class:list={[
-      'overflow-hidden',
-      { 'absolute inset-0': imageLayout === 'background' }
+      "overflow-hidden bg-bema-khaki-light/30",
+      { "absolute inset-0": imageLayout === "background" },
     ]}>
       <img
         src={image.src}
         alt={image.alt}
         class:list={[
-          "w-full object-cover object-center transition-transform duration-300 group-hover:scale-105",
-          { 'h-full': imageLayout === 'background', 'h-auto': imageLayout === 'top' }
+          "w-full object-cover object-center transition-transform duration-300 group-hover:scale-[1.02]",
+          { "h-full": imageLayout === "background", "aspect-[4/3]": imageLayout === "top" },
         ]}
+        loading="lazy"
       />
     </div>
   )}
 
   <div class:list={[
-    'p-5',
-    { 'relative': imageLayout === 'background' }
+    "p-5",
+    { "relative flex min-h-80 flex-col justify-end bg-bema-green/70 text-bema-white": imageLayout === "background" },
   ]}>
-    <h3 class="mb-2 text-xl font-bold">{title}</h3>
-    <div class="text-gray-700">
+    <h3 class:list={[
+      "mb-3 text-xl font-bold",
+      imageLayout === "background" ? "text-bema-white" : "text-bema-green",
+    ]}>{title}</h3>
+    <div class:list={[
+      imageLayout === "background" ? "text-bema-white" : "text-bema-green",
+    ]}>
       <slot />
     </div>
   </div>

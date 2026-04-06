@@ -2,24 +2,16 @@
 export interface Props {
   title: string;
   subtitle?: string;
-  backgroundImage?: string;
 }
 
-const { 
-  title, 
-  subtitle, 
-  backgroundImage = "/uploads/page-header-bg.webp" 
-} = Astro.props;
+const { title, subtitle } = Astro.props;
 ---
 
-<section 
-  class="relative py-20 bg-cover bg-center"
-  style={`background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(${backgroundImage})`}
->
+<section class="bg-bema-green py-16 text-bema-white md:py-24">
   <div class="container">
-    <div class="max-w-3xl mx-auto text-center text-white">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4 text-white">{title}</h1>
-      {subtitle && <p class="text-xl md:text-2xl">{subtitle}</p>}
+    <div class="max-w-4xl">
+      <h1 class="text-bema-white">{title}</h1>
+      {subtitle && <p class="mt-5 max-w-3xl text-lg leading-8 text-bema-white/90 md:text-xl">{subtitle}</p>}
     </div>
   </div>
 </section>

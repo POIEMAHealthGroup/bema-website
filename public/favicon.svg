@@ -1,14 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
-  <!-- Church building -->
-  <rect x="8" y="18" width="16" height="12" fill="#2563eb"/>
-  
-  <!-- Church roof -->
-  <polygon points="6,18 16,8 26,18" fill="#1d4ed8"/>
-  
-  <!-- Cross -->
-  <rect x="15" y="4" width="2" height="8" fill="#ffffff"/>
-  <rect x="12" y="6" width="8" height="2" fill="#ffffff"/>
-  
-  <!-- Door -->
-  <rect x="14" y="22" width="4" height="8" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="BEMA favicon">
+  <rect width="64" height="64" rx="8" fill="#F2F0E8"/>
+  <text x="32" y="43" text-anchor="middle" font-family="Georgia, serif" font-size="38" font-weight="700" fill="#2C3D2F">B</text>
 </svg>

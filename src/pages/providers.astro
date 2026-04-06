@@ -1,0 +1,49 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHeader from "../components/Sections/PageHeader.astro";
+import Button from "../components/UI/Button.astro";
+import ImagePlaceholder from "../components/UI/ImagePlaceholder.astro";
+---
+
+<BaseLayout
+  title="Find a Partner Clinic | BEMA - Healthcare Access for Florida's Working Families"
+  description="[PLACEHOLDER: Find a Partner Clinic page SEO description - 120 to 155 characters]"
+>
+  <PageHeader
+    title="Find a Partner Clinic"
+    subtitle="[PLACEHOLDER: 1 sentence - BEMA partner clinics serve members directly. Find one near you.]"
+  />
+
+  <section class="section-pad bg-bema-white">
+    <div class="container">
+      <div class="mb-10 max-w-3xl">
+        <h2>Our Partner Clinic Network</h2>
+      </div>
+      <div class="rounded-lg border border-bema-khaki/40 bg-bema-khaki-light/35 p-8 text-center">
+        <svg viewBox="0 0 24 24" class="mx-auto mb-5 h-12 w-12 text-bema-green" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M12 21s7-5.2 7-12a7 7 0 10-14 0c0 6.8 7 12 7 12z"></path>
+          <circle cx="12" cy="9" r="2.5"></circle>
+        </svg>
+        <p class="text-xl font-semibold text-bema-green">[PLACEHOLDER: Partner clinic directory - to be populated at network launch]</p>
+        <p class="mt-3 text-bema-green/80">Clinics will be listed here with name, location, service types, and contact information.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-pad bg-bema-khaki-light/20">
+    <div class="container grid gap-12 lg:grid-cols-2 lg:items-center">
+      <div>
+        <p class="eyebrow">Clinic partners</p>
+        <h2 class="mt-3">[PLACEHOLDER: &quot;Join Our Network&quot; or equivalent heading for clinic partners]</h2>
+        <p class="mt-6 text-lg text-bema-green/85">[PLACEHOLDER: 2 paragraphs - what it means to be a BEMA partner clinic, what BEMA handles, what the clinic focuses on]</p>
+        <div class="mt-8 border-l-4 border-bema-khaki bg-bema-white p-6 font-medium text-bema-green">
+          BEMA absorbs the coordination friction so that partner clinics can focus entirely on clinical work.
+        </div>
+        <div class="mt-8">
+          <Button href="/contact">Contact Us About Partnering</Button>
+        </div>
+      </div>
+      <ImagePlaceholder label="[PLACEHOLDER: Clinical setting, independent practice feel]" />
+    </div>
+  </section>
+</BaseLayout>

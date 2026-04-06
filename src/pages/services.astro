@@ -1,0 +1,77 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHeader from "../components/Sections/PageHeader.astro";
+import Button from "../components/UI/Button.astro";
+import ImagePlaceholder from "../components/UI/ImagePlaceholder.astro";
+
+const serviceLines = [
+  {
+    id: "primary-care",
+    heading: "[PLACEHOLDER: Direct Primary Care heading]",
+    body: "[PLACEHOLDER: 2 paragraphs - what DPC is, what members access, how BEMA coordinates it]",
+    featurePrefix: "DPC",
+    image: "[PLACEHOLDER: Primary care setting, non-clinical feel]",
+    alternate: false,
+  },
+  {
+    id: "eye-care",
+    heading: "[PLACEHOLDER: Eye Care heading]",
+    body: "[PLACEHOLDER: 2 paragraphs - eye care access, what is included, coordination model]",
+    featurePrefix: "Eye Care",
+    image: "[PLACEHOLDER: Eye care setting, warm tone]",
+    alternate: true,
+  },
+  {
+    id: "mental-health",
+    heading: "[PLACEHOLDER: Mental Health heading]",
+    body: "[PLACEHOLDER: 2 paragraphs - mental health access, what is included, coordination model]",
+    featurePrefix: "Mental Health",
+    image: "[PLACEHOLDER: Mental health / counseling setting, dignified tone]",
+    alternate: false,
+  },
+];
+---
+
+<BaseLayout
+  title="Services | BEMA - Healthcare Access for Florida's Working Families"
+  description="[PLACEHOLDER: Services page SEO description - 120 to 155 characters]"
+>
+  <PageHeader
+    title="[PLACEHOLDER: Services page headline]"
+    subtitle="[PLACEHOLDER: 1 sentence - BEMA coordinates access, partner clinics deliver]"
+  />
+
+  {serviceLines.map((service) => (
+    <section id={service.id} class={`section-pad ${service.alternate ? "bg-bema-khaki-light/20" : "bg-bema-white"}`}>
+      <div class="container grid gap-12 lg:grid-cols-2 lg:items-center">
+        <div class={service.alternate ? "lg:order-2" : undefined}>
+          <p class="eyebrow">Program service fee pathway</p>
+          <h2 class="mt-3">{service.heading}</h2>
+          <p class="mt-6 text-lg text-bema-green/85">{service.body}</p>
+          <ul class="mt-8 grid gap-3">
+            {[1, 2, 3, 4].map((item) => (
+              <li class="rounded-md border border-bema-khaki/40 bg-bema-white p-4 font-medium text-bema-green">
+                [PLACEHOLDER: {service.featurePrefix} feature {item}]
+              </li>
+            ))}
+          </ul>
+          <div class="mt-8">
+            <Button href="/providers">Find a Partner Clinic</Button>
+          </div>
+        </div>
+        <ImagePlaceholder label={service.image} class={service.alternate ? "lg:order-1" : undefined} />
+      </div>
+    </section>
+  ))}
+
+  <section class="bg-bema-green py-16 text-bema-white">
+    <div class="container">
+      <div class="max-w-4xl">
+        <h2 class="text-bema-white">[PLACEHOLDER: Services closing CTA heading]</h2>
+        <div class="mt-8">
+          <Button href="/get-started" variant="inverted">Get Started</Button>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,60 +1,35 @@
 ---
 import { getCollection } from "astro:content";
-const { showAll = true, limit = 6 } = Astro.props;
+import ImagePlaceholder from "../UI/ImagePlaceholder.astro";
 
-const allStaff = await getCollection("staff", ({ data }) =>
+const { showAll = true, limit = 3 } = Astro.props;
+
+const allTeam = await getCollection("team", ({ data }) =>
   import.meta.env.PROD ? !data.draft : true
 );
-const staffMembers = allStaff
+
+const teamMembers = allTeam
   .sort((a, b) => a.data.order - b.data.order)
   .slice(0, showAll ? undefined : limit);
 ---
 
-<!-- ================= STAFF GRID ================= -->
-<section id="staff" class="py-16 bg-white">
-  <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold text-center mb-4">Our Leadership Team</h2>
-    <p class="text-center text-gray-600 mb-12">
-      Meet the dedicated individuals who lead and serve our church community
-    </p>
+<section id="leadership" class="section-pad bg-bema-white">
+  <div class="container">
+    <div class="mb-12 max-w-3xl">
+      <h2>[PLACEHOLDER: Leadership Team section heading]</h2>
+      <p class="mt-4 text-lg text-bema-green/85">[PLACEHOLDER: Leadership Team section intro]</p>
+    </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr">
-      {staffMembers.map(staff => (
-        <div class="bg-white rounded-lg shadow overflow-hidden flex flex-col h-full">
-          <!-- Foto (4:3) -->
-          <div class="relative w-full pb-[100%]">
-            <img
-              src={staff.data.image}
-              alt={staff.data.name}
-              class="absolute inset-0 w-full h-full object-cover object-center"
-            />
+    <div class="grid gap-8 md:grid-cols-3">
+      {teamMembers.map((member) => (
+        <article class="card flex h-full flex-col">
+          <ImagePlaceholder label={member.data.imageLabel} minHeight="min-h-72" class="rounded-b-none border-x-0 border-t-0" />
+          <div class="flex flex-1 flex-col p-6">
+            <h3 class="text-2xl">{member.data.name}</h3>
+            <p class="mt-2 font-semibold text-bema-khaki">{member.data.title}</p>
+            <p class="mt-4 text-bema-green/85">{member.data.bio}</p>
           </div>
-          <div class="p-4 flex flex-col flex-1 justify-between">
-            <div>
-              <h3 class="text-xl font-semibold mb-1">{staff.data.name}</h3>
-              <p class="text-primary-600 mb-2">{staff.data.title}</p>
-              <p class="text-gray-700 text-sm">{staff.data.bio}</p>
-            </div>
-            <div class="mt-4 space-y-1 text-sm">
-              {staff.data.email && (
-                <a
-                  href={`mailto:${staff.data.email}`}
-                  class="text-primary-600 hover:underline block"
-                >
-                  {staff.data.email}
-                </a>
-              )}
-              {staff.data.phone && (
-                <a
-                  href={`tel:${staff.data.phone}`}
-                  class="text-primary-600 hover:underline block"
-                >
-                  {staff.data.phone}
-                </a>
-              )}
-            </div>
-          </div>
-        </div>
+        </article>
       ))}
     </div>
   </div>

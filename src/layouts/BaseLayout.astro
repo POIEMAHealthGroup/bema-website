@@ -16,11 +16,11 @@ export interface Props {
 }
 
 const {
-  title = "Church Name - A Welcoming Christian Community",
-  description = "We are a welcoming Christian community dedicated to sharing God's love through worship, fellowship, and service.",
+  title = "BEMA | Healthcare Access for Florida's Working Families",
+  description = "[PLACEHOLDER: SEO meta description - 155 characters max]",
   image = {
-    url: "/uploads/church-default.webp",
-    alt: "Church Name",
+    url: "/favicon.svg",
+    alt: "[PLACEHOLDER: Alt text for BEMA wordmark image]",
   },
   type = "website",
   canonicalUrl,
@@ -34,7 +34,6 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    
     <Seo
       title={title}
       description={description}
@@ -42,21 +41,18 @@ const {
       type={type}
       canonicalUrl={canonicalUrl}
     />
-    
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="manifest" href="/site.webmanifest" />
   </head>
   <body>
-    <div class="flex flex-col min-h-screen">
+    <a class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-md focus:bg-bema-khaki focus:px-4 focus:py-2 focus:text-bema-green" href="#main-content">
+      Skip to content
+    </a>
+    <div class="flex min-h-screen flex-col bg-bema-white">
       <Header />
-      
-      <main class="flex-grow">
+      <main id="main-content" class="flex-grow">
         <slot />
       </main>
-      
       <Footer />
     </div>
   </body>

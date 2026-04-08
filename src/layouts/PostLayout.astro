@@ -16,6 +16,7 @@ export interface Props {
 
 const {
   title,
+  image,
   date,
   author,
   tags = [],
@@ -29,6 +30,16 @@ const formattedDate = date ? formatDate(date) : null;
 <section class="section-pad bg-bema-white">
   <div class="container">
     <div class="mx-auto max-w-3xl">
+      {image && (
+        <img
+          src={image.url}
+          alt={image.alt}
+          class="mb-10 h-auto w-full rounded-lg border border-bema-khaki/40 object-cover"
+          loading="eager"
+          decoding="async"
+        />
+      )}
+
       {(date || author || tags.length > 0) && (
         <div class="mb-8 border-b border-bema-khaki/40 pb-6">
           <div class="flex flex-wrap gap-x-5 gap-y-2 text-sm font-medium text-bema-green/75">

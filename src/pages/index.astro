@@ -3,7 +3,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import HeroSection from "../components/Sections/HeroSection.astro";
 import RecentBlogPosts from "../components/Sections/RecentBlogPosts.astro";
 import Button from "../components/UI/Button.astro";
-import ImagePlaceholder from "../components/UI/ImagePlaceholder.astro";
 
 const pageTitle = "Home | BEMA - Healthcare Access for Florida's Working Families";
 const pageDescription = "[PLACEHOLDER: Home page SEO description - 120 to 155 characters]";
@@ -35,7 +34,7 @@ const services = [
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
-  <HeroSection />
+  <HeroSection imageSrc="/images/home-hero.jpeg" />
 
   <section id="how-it-works" class="section-pad bg-bema-khaki-light/20">
     <div class="container">
@@ -61,7 +60,13 @@ const services = [
 
   <section class="section-pad bg-bema-white">
     <div class="container grid gap-12 lg:grid-cols-2 lg:items-center">
-      <ImagePlaceholder label="[PLACEHOLDER: Image - working individual or family, non-clinical setting]" />
+      <img
+        src="/images/home-who-we-serve.jpg"
+        alt="[PLACEHOLDER: Alt text for working individual or family in a non-clinical setting]"
+        class="min-h-80 w-full rounded-lg border border-bema-khaki/40 object-cover"
+        loading="lazy"
+        decoding="async"
+      />
       <div>
         <p class="eyebrow">Who we serve</p>
         <h2 class="mt-3">[PLACEHOLDER: &quot;Who We Serve&quot; heading]</h2>

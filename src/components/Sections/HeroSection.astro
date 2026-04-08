@@ -5,6 +5,7 @@ export interface Props {
   title?: string;
   subtitle?: string;
   placeholderLabel?: string;
+  imageSrc?: string;
   ctaText?: string;
   ctaLink?: string;
   secondaryCtaText?: string;
@@ -15,6 +16,7 @@ const {
   title = "[PLACEHOLDER: Primary hero headline - community-first, relief-emotion framing]",
   subtitle = "[PLACEHOLDER: One sentence describing BEMA as a coordination organization connecting Florida's working families to affordable care]",
   placeholderLabel = "[PLACEHOLDER: Hero image - working adult or family, Florida setting, warm and dignified, not clinical]",
+  imageSrc,
   ctaText = "Get Started",
   ctaLink = "/get-started",
   secondaryCtaText = "Learn How It Works",
@@ -23,12 +25,22 @@ const {
 ---
 
 <section class="relative overflow-hidden bg-bema-green text-bema-white">
-  <div role="img" aria-label={placeholderLabel} class="absolute inset-0 bg-bema-khaki-light/25">
-    <div class="absolute inset-0 bg-bema-green/70"></div>
-    <div class="absolute bottom-8 right-8 hidden max-w-md rounded-lg border border-bema-white/40 bg-bema-white/10 p-5 text-sm font-medium text-bema-white md:block">
-      {placeholderLabel}
+  {imageSrc ? (
+    <img
+      src={imageSrc}
+      alt={placeholderLabel}
+      class="absolute inset-0 h-full w-full object-cover"
+      decoding="async"
+      fetchpriority="high"
+    />
+  ) : (
+    <div role="img" aria-label={placeholderLabel} class="absolute inset-0 bg-bema-khaki-light/25">
+      <div class="absolute bottom-8 right-8 hidden max-w-md rounded-lg border border-bema-white/40 bg-bema-white/10 p-5 text-sm font-medium text-bema-white md:block">
+        {placeholderLabel}
+      </div>
     </div>
-  </div>
+  )}
+  <div class="absolute inset-0 bg-bema-green/70"></div>
 
   <div class="container relative flex min-h-[76dvh] items-center py-24">
     <div class="max-w-4xl">

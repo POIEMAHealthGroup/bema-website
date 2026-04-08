@@ -58,7 +58,10 @@ const blogCollection = defineCollection({
     description: z.string(),
     author: z.string().default("David Knight"),
     image: z.object({
-      url: z.string().startsWith('/uploads/blog/'),
+      url: z.union([
+        z.string().startsWith('/images/'),
+        z.string().startsWith('/uploads/blog/'),
+      ]),
       alt: z.string(),
     }).optional(),
     tags: z.array(z.string()).default(["healthcare-access"]),

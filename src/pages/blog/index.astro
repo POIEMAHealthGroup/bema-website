@@ -84,7 +84,17 @@ const tags = [...new Set(posts.flatMap((post) => post.data.tags))];
                 data-date={post.data.pubDate.toISOString().slice(0, 10)}
               >
                 <a href={`/blog/${post.slug}`}>
-                  <ImagePlaceholder label={post.data.image?.alt || "[PLACEHOLDER: Featured blog image]"} minHeight="min-h-56" class="rounded-b-none border-x-0 border-t-0" />
+                  {post.data.image?.url ? (
+                    <img
+                      src={post.data.image.url}
+                      alt={post.data.image.alt}
+                      class="h-56 w-full rounded-t-lg object-cover"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <ImagePlaceholder label={post.data.image?.alt || "[PLACEHOLDER: Featured blog image]"} minHeight="min-h-56" class="rounded-b-none border-x-0 border-t-0" />
+                  )}
                 </a>
                 <div class="flex flex-1 flex-col p-6">
                   <p class="text-sm font-medium text-bema-khaki">{formatDate(post.data.pubDate)} / {post.data.author}</p>

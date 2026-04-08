@@ -2,7 +2,6 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/Sections/PageHeader.astro";
 import TeamList from "../components/Sections/TeamList.astro";
-import ImagePlaceholder from "../components/UI/ImagePlaceholder.astro";
 
 const values = [
   {
@@ -55,7 +54,13 @@ const values = [
         <h2 class="mt-3">[PLACEHOLDER: &quot;Our Story&quot; or equivalent heading]</h2>
         <p class="mt-6 text-lg text-bema-green/85">[PLACEHOLDER: 2 paragraphs - founding context, the problem being solved, why BEMA was built]</p>
       </div>
-      <ImagePlaceholder label="[PLACEHOLDER: Founders or organizational image]" />
+      <img
+        src="/images/about-story.jpg"
+        alt="[PLACEHOLDER: Alt text for founders or organizational image]"
+        class="min-h-80 w-full rounded-lg border border-bema-khaki/40 object-cover"
+        loading="lazy"
+        decoding="async"
+      />
     </div>
   </section>
 

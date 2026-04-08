@@ -2,7 +2,6 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/Sections/PageHeader.astro";
 import Button from "../components/UI/Button.astro";
-import ImagePlaceholder from "../components/UI/ImagePlaceholder.astro";
 
 const serviceLines = [
   {
@@ -10,7 +9,8 @@ const serviceLines = [
     heading: "[PLACEHOLDER: Direct Primary Care heading]",
     body: "[PLACEHOLDER: 2 paragraphs - what DPC is, what members access, how BEMA coordinates it]",
     featurePrefix: "DPC",
-    image: "[PLACEHOLDER: Primary care setting, non-clinical feel]",
+    imageSrc: "/images/services-primary-care.jpg",
+    imageAlt: "[PLACEHOLDER: Alt text for primary care setting with a non-clinical feel]",
     alternate: false,
   },
   {
@@ -18,7 +18,8 @@ const serviceLines = [
     heading: "[PLACEHOLDER: Eye Care heading]",
     body: "[PLACEHOLDER: 2 paragraphs - eye care access, what is included, coordination model]",
     featurePrefix: "Eye Care",
-    image: "[PLACEHOLDER: Eye care setting, warm tone]",
+    imageSrc: "/images/services-eye-care.jpg",
+    imageAlt: "[PLACEHOLDER: Alt text for warm eye care setting]",
     alternate: true,
   },
   {
@@ -26,7 +27,8 @@ const serviceLines = [
     heading: "[PLACEHOLDER: Mental Health heading]",
     body: "[PLACEHOLDER: 2 paragraphs - mental health access, what is included, coordination model]",
     featurePrefix: "Mental Health",
-    image: "[PLACEHOLDER: Mental health / counseling setting, dignified tone]",
+    imageSrc: "/images/BEMA-Misc.jpg",
+    imageAlt: "[PLACEHOLDER: Alt text for Mental Health service image]",
     alternate: false,
   },
 ];
@@ -59,7 +61,16 @@ const serviceLines = [
             <Button href="/providers">Find a Partner Clinic</Button>
           </div>
         </div>
-        <ImagePlaceholder label={service.image} class={service.alternate ? "lg:order-1" : undefined} />
+        <img
+          src={service.imageSrc}
+          alt={service.imageAlt}
+          class:list={[
+            "min-h-80 w-full rounded-lg border border-bema-khaki/40 object-cover",
+            service.alternate ? "lg:order-1" : undefined,
+          ]}
+          loading="lazy"
+          decoding="async"
+        />
       </div>
     </section>
   ))}

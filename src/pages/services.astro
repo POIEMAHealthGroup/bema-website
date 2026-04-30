@@ -6,29 +6,29 @@ import Button from "../components/UI/Button.astro";
 const serviceLines = [
   {
     id: "primary-care",
-    heading: "[PLACEHOLDER: Direct Primary Care heading]",
-    body: "[PLACEHOLDER: 2 paragraphs - what DPC is, what members access, how BEMA coordinates it]",
+    heading: "Direct Primary Care that actually knows you.",
+    body: "Direct Primary Care is a model built around the relationship between a patient and their primary care doctor, without the insurance billing machinery that gets in the way of both. BEMA coordinates access to DPC partner clinics in Florida where members are seen by the same doctor consistently, appointments are accessible, and care is not rationed by what an insurance company is willing to approve. When you become a BEMA member, we connect you to a DPC partner clinic that is right for your needs and handle the coordination from there. The clinic focuses on your care. BEMA handles everything else.",
     featurePrefix: "DPC",
     imageSrc: "/images/services-primary-care.jpg",
-    imageAlt: "[PLACEHOLDER: Alt text for primary care setting with a non-clinical feel]",
+    imageAlt: "A primary care doctor in a calm modern clinic room giving full attention to a member during an appointment, warm and unhurried.",
     alternate: false,
   },
   {
     id: "eye-care",
-    heading: "[PLACEHOLDER: Eye Care heading]",
-    body: "[PLACEHOLDER: 2 paragraphs - eye care access, what is included, coordination model]",
+    heading: "Eye care that does not require a fight to access.",
+    body: "Routine and preventive eye care is one of the most consistently delayed services among working adults who have fallen through the insurance gap. Not because they do not need it but because the cost and logistics of accessing it without adequate coverage make it easier to put off. BEMA coordinates access to eye care partner clinics in Florida so that members can get the routine exams, vision assessments, and preventive care they have been postponing. When you become a BEMA member, eye care is part of your coordinated membership from day one. We connect you to the right partner clinic, handle the coordination in between, and make sure accessing eye care is no longer something you have to think twice about.",
     featurePrefix: "Eye Care",
     imageSrc: "/images/services-eye-care.jpg",
-    imageAlt: "[PLACEHOLDER: Alt text for warm eye care setting]",
+    imageAlt: "An optometrist conducting a calm and modern eye exam with a member in a well lit clinic, warm and professional.",
     alternate: true,
   },
   {
     id: "mental-health",
-    heading: "[PLACEHOLDER: Mental Health heading]",
-    body: "[PLACEHOLDER: 2 paragraphs - mental health access, what is included, coordination model]",
+    heading: "Mental Health care without the barriers that usually come with it.",
+    body: "Mental Health services are among the hardest to access for working adults caught in the insurance gap. The cost is high, the waitlists are long, and the administrative process of finding a provider who accepts what you have, or who will see you without it, can be discouraging enough to make people give up before they start. BEMA coordinates access to licensed Mental Health professionals through a network of partner clinics so that members can get the care they need without fighting the system to get there. When you become a BEMA member, Mental Health is treated as an equal part of your coordinated membership alongside primary care and eye care. We connect you to the right partner clinic for your needs and handle the coordination so that getting support feels like a straightforward next step rather than an obstacle course.",
     featurePrefix: "Mental Health",
     imageSrc: "/images/BEMA-Misc.jpg",
-    imageAlt: "[PLACEHOLDER: Alt text for Mental Health service image]",
+    imageAlt: "A licensed Mental Health counselor seated across from a member in a calm and warmly furnished therapy office, quiet and dignified.",
     alternate: false,
   },
 ];
@@ -36,13 +36,13 @@ const serviceLines = [
 
 <BaseLayout
   title="Services | BEMA - Healthcare Access for Florida's Working Families"
-  description="[PLACEHOLDER: Services page SEO description - 120 to 155 characters]"
+  description="BEMA coordinates access to Direct Primary Care, Eye Care, and Mental Health services for working families in Florida through a network of independent partner clinics."
 >
   <PageHeader
-    title="[PLACEHOLDER: Services page headline]"
-    subtitle="[PLACEHOLDER: 1 sentence - BEMA coordinates access, partner clinics deliver]"
+    title="Three services. One membership. No runaround."
+    subtitle="BEMA coordinates access to Direct Primary Care, Eye Care, and Mental Health services through a network of independent partner clinics so that members can focus on getting care instead of navigating the system."
     imageSrc="/images/BEMA-misc3.jpg"
-    imageAlt="[PLACEHOLDER: Alt text for Services page hero image]"
+    imageAlt="A warm and welcoming clinic entrance in a Florida community setting, approachable and non clinical."
   />
 
   {serviceLines.map((service) => (
@@ -55,7 +55,29 @@ const serviceLines = [
           <ul class="mt-8 grid gap-3">
             {[1, 2, 3, 4].map((item) => (
               <li class="rounded-md border border-bema-khaki/40 bg-bema-white p-4 font-medium text-bema-green">
-                [PLACEHOLDER: {service.featurePrefix} feature {item}]
+                {service.id === "primary-care"
+                  ? item === 1
+                    ? "Consistent access to the same primary care doctor"
+                    : item === 2
+                      ? "Same day and next day appointments available"
+                      : item === 3
+                        ? "Preventive care and chronic condition management"
+                        : "No surprise bills and no insurance approval required"
+                  : service.id === "eye-care"
+                    ? item === 1
+                      ? "Routine comprehensive eye exams"
+                      : item === 2
+                        ? "Vision assessments and prescription evaluation"
+                        : item === 3
+                          ? "Preventive screenings for common eye conditions"
+                          : "Coordination through BEMA's partner clinic network"
+                    : item === 1
+                      ? "Coordinated access to licensed Mental Health professionals"
+                      : item === 2
+                        ? "Individual counseling and therapy services"
+                        : item === 3
+                          ? "Ongoing care coordination through BEMA's partner clinic network"
+                          : "Mental Health treated as equal to physical health in every membership"}
               </li>
             ))}
           </ul>
@@ -80,7 +102,7 @@ const serviceLines = [
   <section class="bg-bema-green py-16 text-bema-white">
     <div class="container">
       <div class="max-w-4xl">
-        <h2 class="text-bema-white">[PLACEHOLDER: Services closing CTA heading]</h2>
+        <h2 class="text-bema-white">You have found the way in. Now take the first step.</h2>
         <div class="mt-8">
           <Button href="/get-started" variant="inverted">Get Started</Button>
         </div>

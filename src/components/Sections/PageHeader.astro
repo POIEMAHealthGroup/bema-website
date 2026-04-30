@@ -2,13 +2,35 @@
 export interface Props {
   title: string;
   subtitle?: string;
+  imageSrc?: string;
+  imageAlt?: string;
 }
 
-const { title, subtitle } = Astro.props;
+const { title, subtitle, imageSrc, imageAlt = "" } = Astro.props;
 ---
 
-<section class="bg-bema-green py-16 text-bema-white md:py-24">
-  <div class="container">
+<section class:list={[
+  "relative overflow-hidden text-bema-white",
+  imageSrc ? "bg-bema-green" : "bg-bema-green py-16 md:py-24",
+]}>
+  {imageSrc && (
+    <>
+      <img
+        src={imageSrc}
+        alt={imageAlt}
+        class="absolute inset-0 h-full w-full object-cover"
+        loading="eager"
+        decoding="async"
+        fetchpriority="high"
+      />
+      <div class="absolute inset-0 bg-bema-green/72"></div>
+    </>
+  )}
+
+  <div class:list={[
+    "container",
+    imageSrc ? "relative flex min-h-[52dvh] items-end py-20 md:min-h-[58dvh] md:py-24" : "",
+  ]}>
     <div class="max-w-4xl">
       <h1 class="text-bema-white">{title}</h1>
       {subtitle && <p class="mt-5 max-w-3xl text-lg leading-8 text-bema-white/90 md:text-xl">{subtitle}</p>}

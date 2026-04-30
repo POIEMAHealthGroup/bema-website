@@ -1,11 +1,11 @@
 ---
-title: "[PLACEHOLDER: Blog post title 1]"
+title: "The Working Gap: Why Millions of Floridians Fall Through the Cracks of the Current Healthcare System"
 pubDate: 2026-04-06
-description: "[PLACEHOLDER: Blog post excerpt 1 - 1 sentence summary]"
-author: "David Knight"
+description: "If you earn too much for Medicaid but not enough to make traditional insurance worth what it costs, you are not alone and you are not out of options."
+author: "POIEMA Health Group"
 image:
   url: "/images/blog-healthcare-access.jpg"
-  alt: "[PLACEHOLDER: Alt text for healthcare access blog image]"
+  alt: "A working adult in a Florida community setting looking thoughtful, warm and dignified, not clinical."
 tags: ["healthcare-access"]
 draft: false
 ---

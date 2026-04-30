@@ -1,11 +1,11 @@
 ---
-title: "[PLACEHOLDER: Blog post title 3]"
+title: "Why Mental Health Access Is the Hardest Problem in the Working Gap and What BEMA Is Doing About It"
 pubDate: 2026-04-06
-description: "[PLACEHOLDER: Blog post excerpt 3 - 1 sentence summary]"
-author: "David Knight"
+description: "For working adults without adequate coverage, Mental Health services are the most delayed and most needed part of the care picture."
+author: "POIEMA Health Group"
 image:
   url: "/images/blog-mental-health.jpg"
-  alt: "[PLACEHOLDER: Alt text for Mental Health blog image]"
+  alt: "A licensed Mental Health counselor and member in a calm warmly furnished therapy office, quiet and professional."
 tags: ["mental-health"]
 draft: false
 ---

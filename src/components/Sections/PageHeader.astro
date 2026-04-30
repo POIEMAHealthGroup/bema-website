@@ -23,13 +23,13 @@ const { title, subtitle, imageSrc, imageAlt = "" } = Astro.props;
         decoding="async"
         fetchpriority="high"
       />
-      <div class="absolute inset-0 bg-bema-green/72"></div>
+      <div class="absolute inset-0 bg-bema-green/70"></div>
     </>
   )}
 
   <div class:list={[
     "container",
-    imageSrc ? "relative flex min-h-[52dvh] items-end py-20 md:min-h-[58dvh] md:py-24" : "",
+    imageSrc ? "relative z-10 flex min-h-[56dvh] items-center py-20 md:min-h-[60dvh] md:py-24" : "",
   ]}>
     <div class="max-w-4xl">
       <h1 class="text-bema-white">{title}</h1>

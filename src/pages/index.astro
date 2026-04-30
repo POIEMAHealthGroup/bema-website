@@ -5,7 +5,7 @@ import RecentBlogPosts from "../components/Sections/RecentBlogPosts.astro";
 import Button from "../components/UI/Button.astro";
 
 const pageTitle = "Home | BEMA - Healthcare Access for Florida's Working Families";
-const pageDescription = "BEMA coordinates access to Direct Primary Care, Eye Care, and Mental Health services for working families in Florida who have been priced out of traditional insurance.";
+const pageDescription = "BEMA coordinates access to Direct Primary Care, Eye Care, and Mental Health services for working families in Florida who have been priced out of what healthcare currently costs.";
 
 const steps = [1, 2, 3];
 const services = [
@@ -13,7 +13,7 @@ const services = [
     id: "primary-care",
     icon: "PC",
     heading: "Direct Primary Care",
-    body: "Consistent, relationship-based primary care through a partner clinic that knows you by name, not by insurance card.",
+    body: "Consistent, relationship based primary care through a partner clinic that knows you by name, not by a billing code.",
     href: "/services#primary-care",
   },
   {
@@ -27,7 +27,7 @@ const services = [
     id: "mental-health",
     icon: "MH",
     heading: "Mental Health",
-    body: "Coordinated access to licensed Mental Health professionals who are focused on your care, not on navigating your coverage.",
+    body: "Coordinated access to licensed Mental Health professionals who are focused on your care, not on the administrative maze around it.",
     href: "/services#mental-health",
   },
 ];
@@ -51,7 +51,7 @@ const services = [
               <text x="32" y="40" text-anchor="middle" class="fill-current font-body text-2xl font-semibold">{step}</text>
             </svg>
             <h3 class="text-2xl">{step === 1 ? "You become a member." : step === 2 ? "We handle the coordination." : "Your partner clinic takes it from there."}</h3>
-            <p class="mt-4 text-bema-green/85">{step === 1 ? "Choose a monthly program service fee that fits your budget. Membership gives you coordinated access to BEMA's full partner clinic network covering Direct Primary Care, Eye Care, and Mental Health services." : step === 2 ? "BEMA matches you to the right partner clinic for your needs and takes care of the logistics in between. No referral runaround, no insurance paperwork, no surprise bills waiting on the other side." : "Walk in as a member, not as a patient navigating a broken system. The clinic focuses entirely on your care because BEMA has already handled everything else."}</p>
+            <p class="mt-4 text-bema-green/85">{step === 1 ? "Choose a monthly program service fee that fits your budget. Membership gives you coordinated access to BEMA's full partner clinic network covering Direct Primary Care, Eye Care, and Mental Health services." : step === 2 ? "BEMA matches you to the right partner clinic for your needs and takes care of the logistics in between. No referral runaround, no paperwork maze, no surprise bills waiting on the other side." : "Walk in as a member, not as someone navigating a broken system. The clinic focuses entirely on your care because BEMA has already handled everything else."}</p>
           </article>
         ))}
       </div>
@@ -70,7 +70,7 @@ const services = [
       <div>
         <p class="eyebrow">Who we serve</p>
         <h2 class="mt-3">If the system has never quite worked for you, you are not alone.</h2>
-        <p class="mt-6 text-lg text-bema-green/85">There is a gap in American healthcare that nobody talks about enough. You earn too much to qualify for Medicaid but not enough to make traditional insurance worth what it costs. You are working, you are contributing, and the system has left you to figure it out on your own.</p>
+        <p class="mt-6 text-lg text-bema-green/85">There is a gap in American healthcare that nobody talks about enough. You earn too much to qualify for Medicaid but not enough to make what most plans cost today worth it. You are working, you are contributing, and the system has left you to figure it out on your own.</p>
         <p class="mt-6 text-lg text-bema-green/85">BEMA was built for exactly that gap. We coordinate access to Direct Primary Care, Eye Care, and Mental Health services for working individuals and families in Florida who deserve consistent, dignified care without the financial weight that comes with it.</p>
         <div class="mt-8">
           <Button href="/services">See Our Services</Button>
@@ -104,8 +104,8 @@ const services = [
   <section class="bg-bema-green py-16 text-bema-white">
     <div class="container">
       <div class="max-w-4xl">
-        <h2 class="text-bema-white">Your employees need reliable healthcare access. Your bottom line needs predictability. BEMA delivers both.</h2>
-        <p class="mt-5 max-w-3xl text-lg text-bema-white/85">BEMA gives Florida employers a simple way to extend coordinated healthcare access to their workforce at a fixed monthly program service fee with no claims, no deductibles, and no administrative burden.</p>
+        <h2 class="text-bema-white">Your employees need reliable healthcare access. Your bottom line needs predictability. BEMA makes both possible.</h2>
+        <p class="mt-5 max-w-3xl text-lg text-bema-white/85">BEMA gives Florida employers a simple way to extend coordinated healthcare access to their workforce at a fixed monthly program service fee with no claims processing, no unpredictable costs, and no administrative burden.</p>
         <div class="mt-8">
           <Button href="/employers" variant="inverted">Employer Information</Button>
         </div>

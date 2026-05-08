@@ -23,7 +23,18 @@ const teamMembers = allTeam
     <div class="grid gap-8 md:grid-cols-3">
       {teamMembers.map((member) => (
         <article class="card flex h-full flex-col">
-          <ImagePlaceholder label={member.data.imageLabel} minHeight="min-h-72" class="rounded-b-none border-x-0 border-t-0" />
+          {member.data.image ? (
+            <img
+              src={member.data.image.url}
+              alt={member.data.image.alt}
+              width="1200"
+              height="761"
+              loading="lazy"
+              class="h-72 w-full border-b border-bema-khaki/40 object-cover object-center"
+            />
+          ) : (
+            <ImagePlaceholder label={member.data.imageLabel} minHeight="min-h-72" class="rounded-b-none border-x-0 border-t-0" />
+          )}
           <div class="flex flex-1 flex-col p-6">
             <h3 class="text-2xl">{member.data.name}</h3>
             <p class="mt-2 font-semibold text-bema-khaki">{member.data.title}</p>

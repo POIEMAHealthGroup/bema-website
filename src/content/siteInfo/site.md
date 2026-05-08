@@ -1,10 +1,10 @@
 ---
 title: "BEMA Site Information"
 siteName: "BEMA"
-siteDescription: "[PLACEHOLDER: SEO meta description - 155 characters max]"
+siteDescription: "BEMA Health connects Florida's working families to affordable primary care, eye care, and mental health services. No insurance required."
 organizationName: "BEMA Incorporated"
-contactEmail: "[PLACEHOLDER: General contact email]"
-contactPhone: "[PLACEHOLDER: Phone number]"
+contactEmail: "bema.healthalliance@gmail.com"
+contactPhone: "(689) 325-6672"
 address: "Florida"
 ---
 

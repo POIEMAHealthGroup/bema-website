@@ -6,6 +6,10 @@ const teamCollection = defineCollection({
     name: z.string(),
     title: z.string(),
     imageLabel: z.string(),
+    image: z.object({
+      url: z.string().startsWith('/images/team/'),
+      alt: z.string(),
+    }).optional(),
     bio: z.string(),
     order: z.number().default(0),
     draft: z.boolean().default(false),

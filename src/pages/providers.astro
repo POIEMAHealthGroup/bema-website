@@ -2,6 +2,30 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/Sections/PageHeader.astro";
 import Button from "../components/UI/Button.astro";
+
+const partnerClinics = [
+  {
+    logo: "/images/clinics/newgen-primary-care.webp",
+    alt: "NEWGEN Primary Care",
+    name: "NEWGEN Primary Care",
+    address: "580 Lexington Green Lane, Sanford, FL 32771",
+    serviceType: "Primary Care",
+  },
+  {
+    logo: "/images/clinics/uplift-psychotherapy-center.webp",
+    alt: "Uplift Psychotherapy Center",
+    name: "Uplift Psychotherapy Center",
+    address: "225 S Swoope Ave, Suite 201, Maitland, FL 32751",
+    serviceType: "Mental Health",
+  },
+  {
+    logo: "/images/clinics/eagle-vision-eye-care.webp",
+    alt: "Eagle Vision Eye Care",
+    name: "Eagle Vision Eye Care",
+    address: "978 International Pkwy, Suite 1400, Lake Mary, FL 32746",
+    serviceType: "Eye Care",
+  },
+];
 ---
 
 <BaseLayout
@@ -20,13 +44,28 @@ import Button from "../components/UI/Button.astro";
       <div class="mb-10 max-w-3xl">
         <h2>Our Partner Clinic Network</h2>
       </div>
-      <div class="rounded-lg border border-bema-khaki/40 bg-bema-khaki-light/35 p-8 text-center">
-        <svg viewBox="0 0 24 24" class="mx-auto mb-5 h-12 w-12 text-bema-green" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <path d="M12 21s7-5.2 7-12a7 7 0 10-14 0c0 6.8 7 12 7 12z"></path>
-          <circle cx="12" cy="9" r="2.5"></circle>
-        </svg>
-        <p class="text-xl font-semibold text-bema-green">Our partner clinic network is growing. Clinics will be listed here by name, location, and service type as the network launches in your area.</p>
-        <p class="mt-3 text-bema-green/80">Clinics will be listed here with name, location, service types, and contact information.</p>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {partnerClinics.map((clinic) => (
+          <article class="flex h-full flex-col rounded-lg border border-bema-khaki/30 bg-white p-6 shadow-sm">
+            <div class="flex h-24 items-center justify-center">
+              <img
+                src={clinic.logo}
+                alt={clinic.alt}
+                class="h-20 w-auto object-contain"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <div class="mt-6 flex flex-1 flex-col">
+              <h3 class="font-display text-2xl font-bold text-bema-green">{clinic.name}</h3>
+              <p class="mt-4 text-bema-green/75">{clinic.address}</p>
+              <p class="mt-5 inline-flex w-fit rounded-md bg-bema-khaki px-3 py-1 text-sm font-semibold text-bema-green">{clinic.serviceType}</p>
+              <div class="mt-6">
+                <Button href="/contact" class="w-full">Get Started</Button>
+              </div>
+            </div>
+          </article>
+        ))}
       </div>
     </div>
   </section>

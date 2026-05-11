@@ -21,8 +21,7 @@ const subjects = ["General Inquiry", "Member Services", "Employer Inquiry", "Cli
     <div class="container grid gap-12 lg:grid-cols-[minmax(0,1.35fr)_minmax(280px,0.65fr)]">
       <div class="card p-6 md:p-8">
         <h2>Send Us a Message</h2>
-        <!-- TODO: Wire to form handler (Netlify Forms, Formspree, or equivalent) at deployment -->
-        <form id="contact-form" action="#" method="post" class="mt-8 space-y-6">
+        <form id="contact-form" action="#" class="mt-8 space-y-6">
           <div>
             <label for="name" class="mb-2 block text-sm font-medium text-bema-green">Name</label>
             <input id="name" name="name" type="text" required class="w-full rounded-md border border-bema-khaki/60 bg-bema-white px-4 py-3 text-bema-green" />
@@ -55,7 +54,13 @@ const subjects = ["General Inquiry", "Member Services", "Employer Inquiry", "Cli
           </div>
 
           <Button type="submit">Send Message</Button>
+          <p id="contact-error" class="hidden text-sm font-medium text-bema-green">
+            Something went wrong. Please try again or email us directly at bema.healthalliance@gmail.com.
+          </p>
         </form>
+        <div id="contact-success" class="card mt-8 hidden p-6 text-bema-green" role="status">
+          Thank you for reaching out. A member of the BEMA team will be in touch with you shortly.
+        </div>
       </div>
 
       <aside class="card p-6 md:p-8">
@@ -81,4 +86,49 @@ const subjects = ["General Inquiry", "Member Services", "Employer Inquiry", "Cli
       </aside>
     </div>
   </section>
+
+  <script>
+    const form = document.querySelector<HTMLFormElement>("#contact-form");
+    const successMessage = document.querySelector<HTMLElement>("#contact-success");
+    const errorMessage = document.querySelector<HTMLElement>("#contact-error");
+    const submitButton = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
+
+    form?.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      if (!submitButton || !successMessage || !errorMessage) {
+        return;
+      }
+
+      errorMessage.classList.add("hidden");
+      submitButton.disabled = true;
+      submitButton.textContent = "Sending...";
+
+      const formData = new FormData(form);
+      const payload = Object.fromEntries(formData);
+
+      try {
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+          throw new Error(result.message || "Contact form submission failed.");
+        }
+
+        form.classList.add("hidden");
+        successMessage.classList.remove("hidden");
+      } catch {
+        submitButton.disabled = false;
+        submitButton.textContent = "Send Message";
+        errorMessage.classList.remove("hidden");
+      }
+    });
+  </script>
 </BaseLayout>

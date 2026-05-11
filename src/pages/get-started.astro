@@ -35,6 +35,178 @@ const faqs = [1, 2, 3, 4, 5];
     </div>
   </section>
 
+  <section class="section-pad bg-bema-white">
+    <div class="container">
+      <div class="mb-10 max-w-3xl">
+        <p class="eyebrow">Get Started</p>
+        <h2>Tell us a little about yourself.</h2>
+      </div>
+
+      <div class="mb-8 flex flex-col gap-3 sm:flex-row">
+        <button
+          type="button"
+          id="toggle-individual"
+          data-form-toggle="individual"
+          class="rounded-md border border-bema-green bg-bema-green px-5 py-3 font-body font-medium text-bema-white transition-colors duration-200"
+        >
+          I'm an Individual.
+        </button>
+        <button
+          type="button"
+          id="toggle-employer"
+          data-form-toggle="employer"
+          class="rounded-md border border-bema-green bg-transparent px-5 py-3 font-body font-medium text-bema-green transition-colors duration-200"
+        >
+          I'm an Employer.
+        </button>
+      </div>
+
+      <div id="form-individual" class="block max-w-4xl">
+        <form id="individual-get-started-form" action="#" class="card space-y-6 p-6 md:p-8">
+          <input type="hidden" name="form_type" value="individual" />
+
+          <div>
+            <label for="individual-name" class="mb-2 block text-sm font-medium text-bema-green">Name</label>
+            <input id="individual-name" name="name" type="text" required class="w-full rounded-md border border-bema-khaki/60 bg-bema-white px-4 py-3 text-bema-green" />
+          </div>
+
+          <div>
+            <label for="individual-email" class="mb-2 block text-sm font-medium text-bema-green">Email</label>
+            <input id="individual-email" name="email" type="email" required class="w-full rounded-md border border-bema-khaki/60 bg-bema-white px-4 py-3 text-bema-green" />
+          </div>
+
+          <div>
+            <label for="individual-phone" class="mb-2 block text-sm font-medium text-bema-green">Phone (optional)</label>
+            <input id="individual-phone" name="phone" type="tel" class="w-full rounded-md border border-bema-khaki/60 bg-bema-white px-4 py-3 text-bema-green" />
+          </div>
+
+          <div>
+            <label for="individual-zip-code" class="mb-2 block text-sm font-medium text-bema-green">ZIP Code (optional)</label>
+            <input id="individual-zip-code" name="zip_code" type="text" class="w-full rounded-md border border-bema-khaki/60 bg-bema-white px-4 py-3 text-bema-green" />
+          </div>
+
+          <fieldset>
+            <legend class="mb-3 block text-sm font-medium text-bema-green">Who is this for?</legend>
+            <div class="grid gap-3 sm:grid-cols-3">
+              {["Adult", "Child", "Family"].map((option) => (
+                <label class="radio-card cursor-pointer rounded-md border border-bema-khaki/60 bg-bema-white px-4 py-3 text-center font-body font-medium text-bema-green transition-colors duration-200">
+                  <input class="sr-only" type="radio" name="who_for" value={option} required />
+                  <span>{option}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+
+          <div id="individual-total-count-wrap" class="hidden">
+            <label for="individual-total-count" class="mb-2 block text-sm font-medium text-bema-green">How many people total?</label>
+            <input id="individual-total-count" name="total_count" type="number" min="1" class="w-full rounded-md border border-bema-khaki/60 bg-bema-white px-4 py-3 text-bema-green" />
+          </div>
+
+          <fieldset>
+            <legend class="mb-3 block text-sm font-medium text-bema-green">Preferred method of contact</legend>
+            <div class="grid gap-3 sm:grid-cols-3">
+              {["Text", "Email", "Call"].map((option) => (
+                <label class="contact-method-card cursor-pointer rounded-md border border-bema-green bg-transparent px-4 py-3 text-center font-body font-medium text-bema-green transition-colors duration-200">
+                  <input class="sr-only" type="checkbox" name="preferred_contact" value={option} />
+                  <span>{option}</span>
+                </label>
+              ))}
+            </div>
+            <p class="preferred-contact-error mt-3 hidden text-sm font-medium text-bema-green">Please select at least one preferred contact method.</p>
+          </fieldset>
+
+          <div>
+            <label for="individual-message" class="mb-2 block text-sm font-medium text-bema-green">Anything else we should know? (optional)</label>
+            <textarea id="individual-message" name="message" rows="4" class="w-full rounded-md border border-bema-khaki/60 bg-bema-white px-4 py-3 text-bema-green"></textarea>
+            <p class="mt-3 rounded-md border border-bema-khaki/40 bg-bema-khaki-light/20 p-3 text-sm font-medium text-bema-green">
+              Please do not include personal health information in this form.
+            </p>
+          </div>
+
+          <Button type="submit">Send My Request</Button>
+          <p class="form-submit-error hidden text-sm font-medium text-bema-green">
+            Something went wrong. Please try again or contact us directly at bema.healthalliance@gmail.com.
+          </p>
+        </form>
+        <div class="form-success card mt-8 hidden p-6 text-bema-green" role="status">
+          Thank you for reaching out. A member of the BEMA team will be in touch with you shortly using your preferred contact method.
+        </div>
+      </div>
+
+      <div id="form-employer" class="hidden max-w-4xl">
+        <form id="employer-get-started-form" action="#" class="card space-y-6 p-6 md:p-8">
+          <input type="hidden" name="form_type" value="employer" />
+
+          <div>
+            <label for="employer-contact-name" class="mb-2 block text-sm font-medium text-bema-green">Contact Name</label>
+            <input id="employer-contact-name" name="contact_name" type="text" required class="w-full rounded-md border border-bema-khaki/60 bg-bema-white px-4 py-3 text-bema-green" />
+          </div>
+
+          <div>
+            <label for="employer-business-name" class="mb-2 block text-sm font-medium text-bema-green">Business Name</label>
+            <input id="employer-business-name" name="business_name" type="text" required class="w-full rounded-md border border-bema-khaki/60 bg-bema-white px-4 py-3 text-bema-green" />
+          </div>
+
+          <div>
+            <label for="employer-email" class="mb-2 block text-sm font-medium text-bema-green">Email</label>
+            <input id="employer-email" name="email" type="email" required class="w-full rounded-md border border-bema-khaki/60 bg-bema-white px-4 py-3 text-bema-green" />
+          </div>
+
+          <div>
+            <label for="employer-phone" class="mb-2 block text-sm font-medium text-bema-green">Phone (optional)</label>
+            <input id="employer-phone" name="phone" type="tel" class="w-full rounded-md border border-bema-khaki/60 bg-bema-white px-4 py-3 text-bema-green" />
+          </div>
+
+          <div>
+            <label for="employer-employee-count" class="mb-2 block text-sm font-medium text-bema-green">Number of Employees</label>
+            <input id="employer-employee-count" name="employee_count" type="number" min="1" required class="w-full rounded-md border border-bema-khaki/60 bg-bema-white px-4 py-3 text-bema-green" />
+          </div>
+
+          <fieldset>
+            <legend class="mb-3 block text-sm font-medium text-bema-green">Work Arrangement</legend>
+            <div class="grid gap-3 sm:grid-cols-3">
+              {["On-site", "Remote", "Hybrid"].map((option) => (
+                <label class="radio-card cursor-pointer rounded-md border border-bema-khaki/60 bg-bema-white px-4 py-3 text-center font-body font-medium text-bema-green transition-colors duration-200">
+                  <input class="sr-only" type="radio" name="work_arrangement" value={option} required />
+                  <span>{option}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend class="mb-3 block text-sm font-medium text-bema-green">Preferred method of contact</legend>
+            <div class="grid gap-3 sm:grid-cols-3">
+              {["Text", "Email", "Call"].map((option) => (
+                <label class="contact-method-card cursor-pointer rounded-md border border-bema-green bg-transparent px-4 py-3 text-center font-body font-medium text-bema-green transition-colors duration-200">
+                  <input class="sr-only" type="checkbox" name="preferred_contact" value={option} />
+                  <span>{option}</span>
+                </label>
+              ))}
+            </div>
+            <p class="preferred-contact-error mt-3 hidden text-sm font-medium text-bema-green">Please select at least one preferred contact method.</p>
+          </fieldset>
+
+          <div>
+            <label for="employer-message" class="mb-2 block text-sm font-medium text-bema-green">Anything else we should know? (optional)</label>
+            <textarea id="employer-message" name="message" rows="4" class="w-full rounded-md border border-bema-khaki/60 bg-bema-white px-4 py-3 text-bema-green"></textarea>
+            <p class="mt-3 rounded-md border border-bema-khaki/40 bg-bema-khaki-light/20 p-3 text-sm font-medium text-bema-green">
+              Please do not include personal health information in this form.
+            </p>
+          </div>
+
+          <Button type="submit">Send My Request</Button>
+          <p class="form-submit-error hidden text-sm font-medium text-bema-green">
+            Something went wrong. Please try again or contact us directly at bema.healthalliance@gmail.com.
+          </p>
+        </form>
+        <div class="form-success card mt-8 hidden p-6 text-bema-green" role="status">
+          Thank you for reaching out. A member of the BEMA team will be in touch with you shortly using your preferred contact method.
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="section-pad bg-bema-khaki-light/20">
     <div class="container">
       <div class="mb-12 max-w-3xl">
@@ -67,4 +239,185 @@ const faqs = [1, 2, 3, 4, 5];
       </div>
     </div>
   </section>
+
+  <script>
+    const selectedCardClasses = ["border-bema-green", "bg-bema-green/10"];
+    const unselectedRadioClasses = ["border-bema-khaki/60", "bg-bema-white"];
+    const selectedContactClasses = ["bg-bema-green", "text-bema-white"];
+    const unselectedContactClasses = ["bg-transparent", "text-bema-green"];
+
+    const toggles = document.querySelectorAll<HTMLButtonElement>("[data-form-toggle]");
+    const individualWrap = document.querySelector<HTMLElement>("#form-individual");
+    const employerWrap = document.querySelector<HTMLElement>("#form-employer");
+    const individualForm = document.querySelector<HTMLFormElement>("#individual-get-started-form");
+    const employerForm = document.querySelector<HTMLFormElement>("#employer-get-started-form");
+    const totalCountWrap = document.querySelector<HTMLElement>("#individual-total-count-wrap");
+    const totalCountInput = document.querySelector<HTMLInputElement>("#individual-total-count");
+
+    const setToggleState = (activeType: string) => {
+      toggles.forEach((toggle) => {
+        const isActive = toggle.dataset.formToggle === activeType;
+        toggle.classList.toggle("bg-bema-green", isActive);
+        toggle.classList.toggle("text-bema-white", isActive);
+        toggle.classList.toggle("bg-transparent", !isActive);
+        toggle.classList.toggle("text-bema-green", !isActive);
+      });
+    };
+
+    const updateRadioCards = (form: HTMLFormElement) => {
+      form.querySelectorAll<HTMLLabelElement>(".radio-card").forEach((card) => {
+        const input = card.querySelector<HTMLInputElement>('input[type="radio"]');
+        const isChecked = Boolean(input?.checked);
+        selectedCardClasses.forEach((className) => card.classList.toggle(className, isChecked));
+        unselectedRadioClasses.forEach((className) => card.classList.toggle(className, !isChecked));
+      });
+    };
+
+    const updateContactCards = (form: HTMLFormElement) => {
+      form.querySelectorAll<HTMLLabelElement>(".contact-method-card").forEach((card) => {
+        const input = card.querySelector<HTMLInputElement>('input[type="checkbox"]');
+        const isChecked = Boolean(input?.checked);
+        selectedContactClasses.forEach((className) => card.classList.toggle(className, isChecked));
+        unselectedContactClasses.forEach((className) => card.classList.toggle(className, !isChecked));
+      });
+    };
+
+    const resetFormState = (form: HTMLFormElement | null) => {
+      if (!form) {
+        return;
+      }
+
+      form.reset();
+      form.classList.remove("hidden");
+      form.querySelector<HTMLElement>(".form-submit-error")?.classList.add("hidden");
+      form.querySelector<HTMLElement>(".preferred-contact-error")?.classList.add("hidden");
+      const submitButton = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = "Send My Request";
+      }
+
+      updateRadioCards(form);
+      updateContactCards(form);
+      form.parentElement?.querySelector<HTMLElement>(".form-success")?.classList.add("hidden");
+    };
+
+    const updateTotalCountVisibility = () => {
+      const selected = individualForm?.querySelector<HTMLInputElement>('input[name="who_for"]:checked')?.value;
+      const shouldShow = selected === "Child" || selected === "Family";
+
+      totalCountWrap?.classList.toggle("hidden", !shouldShow);
+      totalCountWrap?.classList.toggle("block", shouldShow);
+
+      if (totalCountInput) {
+        totalCountInput.required = shouldShow;
+
+        if (!shouldShow) {
+          totalCountInput.value = "";
+        }
+      }
+    };
+
+    const showFormType = (activeType: string) => {
+      const inactiveForm = activeType === "individual" ? employerForm : individualForm;
+      resetFormState(inactiveForm);
+      setToggleState(activeType);
+
+      individualWrap?.classList.toggle("hidden", activeType !== "individual");
+      individualWrap?.classList.toggle("block", activeType === "individual");
+      employerWrap?.classList.toggle("hidden", activeType !== "employer");
+      employerWrap?.classList.toggle("block", activeType === "employer");
+      updateTotalCountVisibility();
+    };
+
+    toggles.forEach((toggle) => {
+      toggle.addEventListener("click", () => {
+        showFormType(toggle.dataset.formToggle || "individual");
+      });
+    });
+
+    [individualForm, employerForm].forEach((form) => {
+      form?.querySelectorAll<HTMLInputElement>('input[type="radio"]').forEach((input) => {
+        input.addEventListener("change", () => {
+          updateRadioCards(form);
+          updateTotalCountVisibility();
+        });
+      });
+
+      form?.querySelectorAll<HTMLInputElement>('input[name="preferred_contact"]').forEach((input) => {
+        input.addEventListener("change", () => {
+          form.querySelector<HTMLElement>(".preferred-contact-error")?.classList.add("hidden");
+          updateContactCards(form);
+        });
+      });
+    });
+
+    const handleFormSubmit = async (form: HTMLFormElement) => {
+      const submitButton = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+      const submitError = form.querySelector<HTMLElement>(".form-submit-error");
+      const preferredContactError = form.querySelector<HTMLElement>(".preferred-contact-error");
+      const successMessage = form.parentElement?.querySelector<HTMLElement>(".form-success");
+      const preferredContacts = Array.from(form.querySelectorAll<HTMLInputElement>('input[name="preferred_contact"]:checked')).map((input) => input.value);
+
+      submitError?.classList.add("hidden");
+
+      if (preferredContacts.length === 0) {
+        preferredContactError?.classList.remove("hidden");
+        return;
+      }
+
+      preferredContactError?.classList.add("hidden");
+
+      if (!submitButton || !successMessage) {
+        return;
+      }
+
+      submitButton.disabled = true;
+      submitButton.textContent = "Sending...";
+
+      const formData = new FormData(form);
+      const payload = Object.fromEntries(formData);
+      payload.preferred_contact = preferredContacts.join(", ");
+
+      if (payload.form_type === "individual" && payload.who_for === "Adult") {
+        delete payload.total_count;
+      }
+
+      try {
+        const response = await fetch("/api/get-started", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(payload),
+        });
+
+        const result = await response.json();
+
+        if (!response.ok || !result.success) {
+          throw new Error(result.message || "Get started form submission failed.");
+        }
+
+        form.classList.add("hidden");
+        successMessage.classList.remove("hidden");
+      } catch {
+        submitButton.disabled = false;
+        submitButton.textContent = "Send My Request";
+        submitError?.classList.remove("hidden");
+      }
+    };
+
+    individualForm?.addEventListener("submit", (event) => {
+      event.preventDefault();
+      handleFormSubmit(individualForm);
+    });
+
+    employerForm?.addEventListener("submit", (event) => {
+      event.preventDefault();
+      handleFormSubmit(employerForm);
+    });
+
+    showFormType("individual");
+  </script>
 </BaseLayout>

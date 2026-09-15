@@ -27,6 +27,7 @@ const {
 } = Astro.props;
 
 const isProd = import.meta.env.PROD;
+const canonicalHost = Astro.site?.hostname ?? "";
 ---
 
 <!doctype html>
@@ -43,23 +44,29 @@ const isProd = import.meta.env.PROD;
       type={type}
       canonicalUrl={canonicalUrl}
     />
-    {isProd && (
-      <>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-1QSYRRFX3P"></script>
-        <script is:inline>
+    {isProd && canonicalHost && (
+      <script
+        is:inline
+        define:vars={{ canonicalHost, gaId: "G-1QSYRRFX3P", clarityId: "yis5r5z054" }}
+      >
+        if (window.location.hostname === canonicalHost) {
           window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-1QSYRRFX3P');
-        </script>
-        <script is:inline>
-          (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-          })(window, document, "clarity", "script", "yis5r5z054");
-        </script>
-      </>
+          window.gtag = function () { window.dataLayer.push(arguments); };
+          var gaScript = document.createElement("script");
+          gaScript.async = true;
+          gaScript.src = "https://www.googletagmanager.com/gtag/js?id=" + gaId;
+          document.head.appendChild(gaScript);
+          window.gtag("js", new Date());
+          window.gtag("config", gaId);
+
+          (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+            t = l.createElement(r); t.async = 1;
+            t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+          })(window, document, "clarity", "script", clarityId);
+        }
+      </script>
     )}
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="manifest" href="/site.webmanifest" />

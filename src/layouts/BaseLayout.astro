@@ -25,6 +25,8 @@ const {
   type = "website",
   canonicalUrl,
 } = Astro.props;
+
+const isProd = import.meta.env.PROD;
 ---
 
 <!doctype html>
@@ -41,6 +43,17 @@ const {
       type={type}
       canonicalUrl={canonicalUrl}
     />
+    {isProd && (
+      <>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-1QSYRRFX3P"></script>
+        <script is:inline>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-1QSYRRFX3P');
+        </script>
+      </>
+    )}
     <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="manifest" href="/site.webmanifest" />
   </head>

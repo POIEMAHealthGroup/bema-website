@@ -27,11 +27,23 @@ const imageURL = new URL(image.url, siteUrl).toString();
 
 const organizationSchema = {
   "@context": "https://schema.org",
-  "@type": "NonprofitOrganization",
+  "@type": ["NGO", "NonprofitOrganization"],
   name: "BEMA Incorporated",
   description: "BEMA Health Incorporated is a Florida nonprofit organization that coordinates access to direct primary care, eye care, and mental health services for working individuals and families.",
   url: siteUrl,
-  areaServed: "Florida",
+  nonprofitStatus: "Nonprofit501c3",
+  areaServed: {
+    "@type": "State",
+    name: "Florida",
+  },
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer support",
+    telephone: "+1-689-325-6672",
+    email: "support@bemahealth.org",
+    areaServed: "US-FL",
+    availableLanguage: "English",
+  },
 };
 
 const articleSchema = {
@@ -48,6 +60,17 @@ const articleSchema = {
   mainEntityOfPage: {
     "@type": "WebPage",
     "@id": canonicalURL,
+  },
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "BEMA Health",
+  url: siteUrl,
+  publisher: {
+    "@type": "NGO",
+    name: "BEMA Incorporated",
   },
 };
 ---
@@ -71,4 +94,5 @@ const articleSchema = {
 <meta property="twitter:image:alt" content={image.alt} />
 
 <script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
 {type === "article" && <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />}

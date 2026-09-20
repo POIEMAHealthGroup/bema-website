@@ -10,6 +10,7 @@ export interface Props {
   };
   type?: "website" | "article";
   canonicalUrl?: string;
+  noindex?: boolean;
 }
 
 const {
@@ -21,6 +22,7 @@ const {
   },
   type = "website",
   canonicalUrl,
+  noindex = false,
 } = Astro.props;
 
 const siteUrl = Astro.site?.toString() || "https://bema-website-tau.vercel.app";
@@ -99,6 +101,7 @@ const websiteSchema = {
 
 <title>{title}</title>
 <meta name="description" content={description} />
+{noindex && <meta name="robots" content="noindex" />}
 <link rel="canonical" href={canonicalURL} />
 
 <meta property="og:type" content={type} />

@@ -13,6 +13,7 @@ export interface Props {
   };
   type?: "website" | "article";
   canonicalUrl?: string;
+  noindex?: boolean;
 }
 
 const {
@@ -24,6 +25,7 @@ const {
   },
   type = "website",
   canonicalUrl,
+  noindex = false,
 } = Astro.props;
 
 const isProd = import.meta.env.PROD;
@@ -43,6 +45,7 @@ const canonicalHost = Astro.site?.hostname ?? "";
       image={image}
       type={type}
       canonicalUrl={canonicalUrl}
+      noindex={noindex}
     />
     {isProd && canonicalHost && (
       <script

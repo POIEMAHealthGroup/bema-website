@@ -1,4 +1,5 @@
 ---
+import { imageDimensions } from "../../utils/imageDimensions";
 import Button from "../UI/Button.astro";
 
 export interface Props {
@@ -28,6 +29,7 @@ const {
   {imageSrc ? (
     <img
       src={imageSrc}
+      {...imageDimensions(imageSrc)}
       alt={placeholderLabel}
       class="absolute inset-0 h-full w-full object-cover"
       decoding="async"

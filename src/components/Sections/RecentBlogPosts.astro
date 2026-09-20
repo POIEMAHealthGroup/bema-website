@@ -1,4 +1,5 @@
 ---
+import { imageDimensions } from "../../utils/imageDimensions";
 import { getCollection } from "astro:content";
 import Button from "../UI/Button.astro";
 import ImagePlaceholder from "../UI/ImagePlaceholder.astro";
@@ -33,6 +34,7 @@ const posts = (await getCollection("blog", ({ data }) => import.meta.env.PROD ? 
             {post.data.image?.url ? (
               <img
                 src={post.data.image.url}
+                {...imageDimensions(post.data.image.url)}
                 alt={post.data.image.alt}
                 class="h-56 w-full rounded-t-lg object-cover"
                 loading="lazy"

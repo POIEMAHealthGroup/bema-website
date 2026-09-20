@@ -1,4 +1,5 @@
 ---
+import { imageDimensions } from "../../utils/imageDimensions";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import ImagePlaceholder from "../../components/UI/ImagePlaceholder.astro";
 import { getCollection } from "astro:content";
@@ -87,6 +88,7 @@ const tags = [...new Set(posts.flatMap((post) => post.data.tags))];
                   {post.data.image?.url ? (
                     <img
                       src={post.data.image.url}
+                      {...imageDimensions(post.data.image.url)}
                       alt={post.data.image.alt}
                       class="h-56 w-full rounded-t-lg object-cover"
                       loading="lazy"

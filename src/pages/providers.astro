@@ -1,4 +1,5 @@
 ---
+import { imageDimensions } from "../utils/imageDimensions";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/Sections/PageHeader.astro";
 import Button from "../components/UI/Button.astro";
@@ -50,6 +51,7 @@ const partnerClinics = [
             <div class="flex h-24 items-center justify-center">
               <img
                 src={clinic.logo}
+                {...imageDimensions(clinic.logo)}
                 alt={clinic.alt}
                 class="h-20 w-auto object-contain"
                 loading="lazy"
@@ -85,6 +87,8 @@ const partnerClinics = [
       </div>
       <img
         src="/images/providers-clinic-network.jpg"
+        width="1200"
+        height="800"
         alt="An independent clinic setting with a warm and professional feel, a small practice focused entirely on patient care."
         class="min-h-80 w-full rounded-lg border border-bema-khaki/40 object-cover"
         loading="lazy"

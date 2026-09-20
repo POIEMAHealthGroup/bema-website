@@ -1,4 +1,5 @@
 ---
+import { imageDimensions } from "../utils/imageDimensions";
 import PageHeader from "../components/Sections/PageHeader.astro";
 import { formatDate } from "../utils/dateUtils";
 
@@ -33,6 +34,7 @@ const formattedDate = date ? formatDate(date) : null;
       {image && (
         <img
           src={image.url}
+          {...imageDimensions(image.url)}
           alt={image.alt}
           class="mb-10 h-auto w-full rounded-lg border border-bema-khaki/40 object-cover"
           loading="eager"

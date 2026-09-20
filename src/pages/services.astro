@@ -1,4 +1,5 @@
 ---
+import { imageDimensions } from "../utils/imageDimensions";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/Sections/PageHeader.astro";
 import Button from "../components/UI/Button.astro";
@@ -87,6 +88,7 @@ const serviceLines = [
         </div>
         <img
           src={service.imageSrc}
+          {...imageDimensions(service.imageSrc)}
           alt={service.imageAlt}
           class:list={[
             "min-h-80 w-full rounded-lg border border-bema-khaki/40 object-cover",

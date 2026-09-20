@@ -1,4 +1,5 @@
 ---
+import { imageDimensions } from "../../utils/imageDimensions";
 export interface Props {
   title: string;
   image?: {
@@ -50,6 +51,7 @@ const Element = href ? "a" : "div";
     ]}>
       <img
         src={image.src}
+        {...imageDimensions(image.src)}
         alt={image.alt}
         class:list={[
           "w-full object-cover object-center transition-transform duration-300 group-hover:scale-[1.02]",

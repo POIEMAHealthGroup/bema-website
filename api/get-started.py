@@ -144,7 +144,7 @@ class handler(BaseHTTPRequestHandler):
                 smtp.login(gmail_address, gmail_app_password)
                 smtp.sendmail(gmail_address, [recipient_email], email_message.as_string())
         except Exception as error:
-            self._send_json(500, {"success": False, "message": str(error)})
+            self._send_json(500, {"success": False, "message": "Unable to send message."})
             return
 
         self._send_json(200, {"success": True})

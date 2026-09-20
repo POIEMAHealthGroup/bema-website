@@ -1,4 +1,6 @@
 ---
+import { getCollection } from "astro:content";
+
 export interface Props {
   title: string;
   description: string;
@@ -25,10 +27,24 @@ const siteUrl = Astro.site?.toString() || "https://bema-website-tau.vercel.app";
 const canonicalURL = canonicalUrl || new URL(Astro.url.pathname, siteUrl).toString();
 const imageURL = new URL(image.url, siteUrl).toString();
 
+const articleSlug = Astro.url.pathname.replace(/^\/blog\//, "").replace(/\/$/, "");
+const articleEntry = type === "article"
+  ? (await getCollection("blog")).find((entry) => entry.slug === articleSlug)
+  : undefined;
+const articleTitle = articleEntry?.data.title || title.replace(/ \| BEMA.*$/, "");
+const articleSources = import.meta.glob("/src/content/blog/**/*.md", {
+  query: "?raw", import: "default", eager: true,
+});
+const articleSource = articleEntry
+  ? String(articleSources[`/src/content/blog/${articleEntry.id}`] || "").split("---")[1] || ""
+  : "";
+const hasAuthor = /^author\s*:/m.test(articleSource);
+const hasPublicationDate = /^pubDate\s*:/m.test(articleSource);
+
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "NGO",
-  name: "BEMA Incorporated",
+  name: "BEMA Health Incorporated",
   description: "BEMA Health Incorporated is a Florida nonprofit organization that coordinates access to direct primary care, eye care, and mental health services for working individuals and families.",
   url: siteUrl,
   nonprofitStatus: "Nonprofit501c3",
@@ -49,12 +65,18 @@ const organizationSchema = {
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
-  headline: title,
+  headline: articleTitle,
+  ...(hasAuthor && articleEntry?.data.author ? {
+    author: { "@type": "Organization", name: articleEntry.data.author },
+  } : {}),
+  ...(hasPublicationDate && articleEntry?.data.pubDate ? {
+    datePublished: articleEntry.data.pubDate.toISOString(),
+  } : {}),
   image: imageURL,
   description,
   publisher: {
     "@type": "Organization",
-    name: "BEMA Incorporated",
+    name: "BEMA Health Incorporated",
   },
   url: canonicalURL,
   mainEntityOfPage: {
@@ -70,7 +92,7 @@ const websiteSchema = {
   url: siteUrl,
   publisher: {
     "@type": "NGO",
-    name: "BEMA Incorporated",
+    name: "BEMA Health Incorporated",
   },
 };
 ---

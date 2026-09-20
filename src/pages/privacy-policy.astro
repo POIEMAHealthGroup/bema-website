@@ -1,52 +1,186 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/Sections/PageHeader.astro";
+
+const POLICY_EFFECTIVE_DATE = "To be set at publication";
+const SHOW_CLARITY_SECTION = true;
 ---
 
 <BaseLayout
   title="Privacy Policy | BEMA - Healthcare Access for Florida's Working Families"
-  description="BEMA Health Incorporated privacy policy. Learn how we collect, use, and protect your information as a Florida nonprofit organization."
+  description="Learn how BEMA Health Incorporated collects, uses, and shares information when you visit this website or contact our team."
 >
   <PageHeader
     title="Privacy Policy"
-    subtitle="This policy describes how BEMA Health Incorporated collects, uses, and protects the information you provide when you visit this site or contact our team."
+    subtitle="This policy explains how information is handled when you visit this website or contact BEMA Health Incorporated."
   />
 
   <section class="section-pad bg-bema-white">
     <div class="container">
-      <div class="prose prose-lg max-w-3xl prose-headings:text-bema-green prose-p:text-bema-green/85">
-        <p><strong>Privacy Policy</strong></p>
-        <p>BEMA Health Incorporated</p>
-        <p>Effective Date: April 15, 2026<br />Last Updated: April 15, 2026</p>
-        <p><strong>1. About This Policy</strong></p>
-        <p>BEMA Health Incorporated, a Florida 501(c)(3) nonprofit organization, operates this website to provide information about its healthcare coordination programs and services. This Privacy Policy explains what information we collect, how we use it, and how we protect it. By using this website you agree to the practices described in this policy.</p>
-        <p>BEMA Health Incorporated's full legal name as it appears in its Articles of Incorporation is BEMA Health Incorporated. Our Employer Identification Number is 42-2255493. Our exemption status may be verified through the IRS Tax Exempt Organization Search tool available at apps.irs.gov/app/eos.</p>
-        <p><strong>2. Information We Collect</strong></p>
-        <p>We collect information you voluntarily provide when you submit our contact form. This includes your name, email address, and phone number if provided. We also collect the subject and content of your message.</p>
-        <p>We do not collect Social Security Numbers through this website or through any form made available for public disclosure, in accordance with IRS guidelines for tax exempt organizations.</p>
-        <p>We do not collect personal health information through this website. Our contact form includes a clear notice requesting that users not include personal health information in their submissions. BEMA Health Incorporated is a coordination organization and not a covered entity under applicable federal health privacy law.</p>
-        <p>We may collect standard anonymous technical data through our web hosting provider, including browser type, pages visited, and time spent on pages. This data is aggregate and non identifying.</p>
-        <p><strong>3. How We Use Your Information</strong></p>
-        <p>Information submitted through our contact form is used solely to respond to your inquiry and to provide information about BEMA Health Incorporated's programs. We do not use your contact information for commercial marketing purposes.</p>
-        <p>We do not sell, lease, or otherwise transfer your personal information to third parties for their own use. Donor information, where collected, is used solely to process contributions and communicate with donors about BEMA's mission. Donor lists are never sold or used for private gain, in accordance with IRS standards governing tax exempt organizations.</p>
-        <p><strong>4. Donor Privacy</strong></p>
-        <p>BEMA Health Incorporated maintains strict confidentiality of donor information. Donor names and contact details are not shared with outside organizations. Contributions are used in accordance with BEMA's stated charitable mission and are never used for private inurement or to benefit insiders of the organization.</p>
-        <p><strong>5. Public Disclosure Requirements</strong></p>
-        <p>As a 501(c)(3) tax exempt organization, BEMA Health Incorporated is required by federal law to make certain documents available for public inspection. These include our approved Application for Recognition of Exemption and our annual IRS Form 990 returns for the three most recent years. These documents are available upon written request submitted to the contact address listed on this website.</p>
-        <p><strong>6. Florida Charitable Solicitation Disclosure</strong></p>
-        <p>BEMA Health Incorporated is registered as a charitable organization in the State of Florida. In accordance with Chapter 496 of the Florida Statutes, the following disclosure is required:</p>
-        <p><strong>A COPY OF THE OFFICIAL REGISTRATION AND FINANCIAL INFORMATION MAY BE OBTAINED FROM THE DIVISION OF CONSUMER SERVICES BY CALLING TOLL FREE 800 435 7352 WITHIN THE STATE. REGISTRATION DOES NOT IMPLY ENDORSEMENT, APPROVAL, OR RECOMMENDATION BY THE STATE.</strong></p>
-        <p><strong>7. Cookies and Tracking</strong></p>
-        <p>This website may use standard browser cookies to improve site functionality and user experience. We do not use cookies to collect personally identifiable information. You may disable cookies through your browser settings without affecting your ability to access the site.</p>
-        <p><strong>8. Third Party Links</strong></p>
-        <p>This website may contain links to external websites operated by partner clinics or other organizations. BEMA Health Incorporated is not responsible for the privacy practices of those sites and encourages users to review the privacy policies of any external sites they visit.</p>
-        <p><strong>9. Children's Privacy</strong></p>
-        <p>This website is not directed at children under the age of 13. We do not knowingly collect personal information from children. If you believe a child has submitted information through this site please contact us and we will remove it promptly.</p>
-        <p><strong>10. Changes to This Policy</strong></p>
-        <p>BEMA Health Incorporated reserves the right to update this Privacy Policy at any time. Changes will be posted on this page with an updated effective date. Continued use of the site after changes are posted constitutes acceptance of the revised policy.</p>
-        <p><strong>11. Contact</strong></p>
-        <p>For questions about this Privacy Policy or to request public inspection documents, please contact us at:</p>
-        <p>BEMA Health Incorporated<br />580 Lexington Green Lane, Sanford, FL 32771<br />[General contact email to be populated]</p>
+      <div class="prose prose-lg max-w-4xl prose-headings:text-bema-green prose-p:text-bema-green/85 prose-li:text-bema-green/85 prose-a:text-bema-green">
+        <p><strong>Last updated:</strong> {POLICY_EFFECTIVE_DATE}</p>
+
+        <h2>Who we are</h2>
+        <p>BEMA Health Incorporated is a Florida nonprofit corporation that coordinates access to care. BEMA Health Incorporated is not a medical provider.</p>
+        <p>This policy applies to this website and explains how information is handled when you visit the site or submit a form.</p>
+
+        <h2>Information you give us</h2>
+        <p>You may give us information through the Contact form or either version of the Get Started form.</p>
+
+        <h3>Contact form</h3>
+        <p>The Contact form includes your name, email address, optional phone number, subject, and message.</p>
+
+        <h3>Get Started form for individuals</h3>
+        <p>The individual form includes a form type value, name, email address, optional phone number, optional ZIP Code, who the request is for, the total number of people when applicable, preferred method of contact, and an optional message.</p>
+
+        <h3>Get Started form for employers</h3>
+        <p>The employer form includes a form type value, contact name, business name, email address, optional phone number, number of employees, work arrangement, preferred method of contact, and an optional message.</p>
+
+        <p>Form submissions are delivered by email to a BEMA Google Workspace mailbox. Submissions are processed by our hosting provider, Vercel, on their way to email. This website does not keep a database of form submissions. We use the information to respond to your inquiry and follow up with you.</p>
+        <p><strong>Please do not include personal health information in any form on this site.</strong> Do not include medical or health details, diagnoses, or payment or account numbers in any form submission.</p>
+
+        <h2>Information collected automatically</h2>
+        <p>When you visit the site, Google Analytics collects information such as page views, interactions, approximate location, and device and browser details using cookie identifiers.</p>
+        {SHOW_CLARITY_SECTION && <p>Microsoft Clarity collects information about how visitors interact with pages.</p>}
+        <p>To display our fonts, your browser requests font resources from Google. Google receives standard request information such as your IP address and browser details.</p>
+        <p>Our hosting and network providers also process standard technical information needed to deliver and protect the site. This may include your IP address, browser and device details, pages requested, and timestamps.</p>
+
+        <h2>Cookies and similar technologies</h2>
+        <p>Google Analytics uses cookies and similar technologies to provide the functions described in this policy.</p>
+        {SHOW_CLARITY_SECTION && <p>Microsoft Clarity also uses cookies and similar technologies for the purposes described below.</p>}
+        {/* CONFIRM: match against cookies observed in production DevTools */}
+        <div class="overflow-x-auto">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Provider</th>
+                <th>Purpose</th>
+                <th>Type</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>_ga</code></td>
+                <td>Google Analytics</td>
+                <td>Distinguishes visitors for site traffic measurement.</td>
+                <td>First party</td>
+              </tr>
+              <tr>
+                <td><code>{"_ga_<container ID>"}</code></td>
+                <td>Google Analytics</td>
+                <td>Maintains information used to measure site activity.</td>
+                <td>First party</td>
+              </tr>
+              {SHOW_CLARITY_SECTION && (
+                <>
+                  <tr>
+                    <td><code>_clck</code></td>
+                    <td>Microsoft Clarity</td>
+                    <td>Stores a Clarity visitor identifier and preferences for this site.</td>
+                    <td>First party</td>
+                  </tr>
+                  <tr>
+                    <td><code>_clsk</code></td>
+                    <td>Microsoft Clarity</td>
+                    <td>Connects multiple page views by a visitor into a single Clarity session recording.</td>
+                    <td>First party</td>
+                  </tr>
+                  <tr>
+                    <td><code>CLID</code></td>
+                    <td>Microsoft Clarity</td>
+                    <td>Identifies the first time Clarity saw this visitor on any site using Clarity.</td>
+                    <td>Third party</td>
+                  </tr>
+                  <tr>
+                    <td><code>ANONCHK</code></td>
+                    <td>Microsoft Clarity</td>
+                    <td>Indicates whether a Microsoft browser identifier is transferred to an advertising cookie. Clarity does not use that cookie, so the value is always 0.</td>
+                    <td>Third party</td>
+                  </tr>
+                  <tr>
+                    <td><code>MR</code></td>
+                    <td>Microsoft Clarity</td>
+                    <td>Indicates whether to refresh the Microsoft browser identifier.</td>
+                    <td>Third party</td>
+                  </tr>
+                  <tr>
+                    <td><code>MUID</code></td>
+                    <td>Microsoft Clarity</td>
+                    <td>Identifies unique web browsers visiting Microsoft sites. Microsoft uses it for advertising, site analytics, and other operational purposes.</td>
+                    <td>Third party</td>
+                  </tr>
+                  <tr>
+                    <td><code>SM</code></td>
+                    <td>Microsoft Clarity</td>
+                    <td>Synchronizes the Microsoft browser identifier across Microsoft domains.</td>
+                    <td>Third party</td>
+                  </tr>
+                </>
+              )}
+            </tbody>
+          </table>
+        </div>
+        <p>You can use your browser controls to block or delete cookies.</p>
+        {SHOW_CLARITY_SECTION && <p>Microsoft states that Clarity sets no cookies when browser cookies are disabled.</p>}
+        <p>You may also use the <a href="https://tools.google.com/dlpage/gaoptout">Google Analytics opt out add on</a>.</p>
+        {/* CONFIRM: verify that the Google Analytics opt out link resolves */}
+
+        <h2>Google Analytics</h2>
+        <p>We use Google Analytics to understand traffic to this site only. It collects page views, interactions, approximate location, and device and browser details using cookie identifiers.</p>
+        <p>Google states that Google Analytics does not log or store individual IP addresses. Event level data is kept for a limited period set in our Google Analytics account.</p>
+        <p>We do not enable Google Analytics advertising features.</p>
+        {/* CONFIRM: Google signals and advertising features off in GA4 admin */}
+        <p>Learn more in <a href="https://policies.google.com/technologies/partner-sites">How Google uses information from sites or apps that use our services</a> and in <a href="https://policies.google.com/privacy">Google's privacy policy</a>.</p>
+
+        {SHOW_CLARITY_SECTION && (
+          <section>
+            <h2>Microsoft Clarity</h2>
+            <p>Microsoft Clarity records how visitors interact with pages, including clicks, scrolls, mouse movement, and page rendering. It presents this information through session replays and heatmaps to help us improve site usability.</p>
+            <p>We use strict masking so page text is masked in recordings.</p>
+            {/* CONFIRM: strict masking is enabled in the Clarity project settings */}
+            <p>Microsoft acts as an independent controller of Clarity data under its terms and not on our behalf. Clarity data is stored in Microsoft Azure.</p>
+            <p>Learn more in <a href="https://go.microsoft.com/fwlink/?LinkId=521839">Microsoft's privacy statement</a>.</p>
+            {/* CONFIRM: legal review of Clarity Terms of Use healthcare content clause before publishing this section */}
+          </section>
+        )}
+
+        <h2>How we use information</h2>
+        <p>We use information to respond to inquiries, follow up with people who contact us, understand and improve the site, maintain security, and comply with legal obligations.</p>
+
+        <h2>Who we share information with</h2>
+        <p>We share information with service providers that help us operate the site and communicate with visitors. These providers include:</p>
+        <ul>
+          <li>Google Workspace for email</li>
+          <li>Google Analytics for site traffic measurement</li>
+          <li>Google Fonts for font delivery</li>
+          {SHOW_CLARITY_SECTION && <li>Microsoft Clarity for site interaction measurement</li>}
+          <li>Vercel for hosting</li>
+          <li>Cloudflare for DNS and network services</li>
+        </ul>
+        <p>Each provider receives information relevant to the service it provides.</p>
+        <p>We may also disclose information where required by law. We do not sell personal information.</p>
+        {/* CONFIRM: legal review of this statement */}
+
+        <h2>Retention</h2>
+        <p>We keep form messages only as long as needed to respond and maintain appropriate organizational records.</p>
+        {/* CONFIRM: founders decide form email retention period; hardening item */}
+
+        <h2>Security</h2>
+        <p>We use reasonable safeguards intended to protect information. No method of transmission or storage is perfectly secure.</p>
+
+        <h2>Children</h2>
+        <p>This site is not directed to children under 18.</p>
+        {/* CONFIRM: founders and counsel review wording; BEMA serves families and Get Started asks who the request is for, including Child */}
+
+        <h2>Links to other sites</h2>
+        <p>This site may link to websites operated by other organizations. This policy does not cover those websites. Review their privacy information before providing information to them.</p>
+
+        <h2>Your choices and contact</h2>
+        <p>You can use the cookie controls described above. For questions or requests about your information, contact <a href="mailto:support@bemahealth.org">support@bemahealth.org</a>.</p>
+
+        <h2>Changes to this policy</h2>
+        <p>We may update this policy as our practices or legal obligations change. Updates will be posted on this page with a new Last updated date.</p>
       </div>
     </div>
   </section>

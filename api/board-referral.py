@@ -1,19 +1,16 @@
-import html
 import hmac
 import json
 import os
 import re
 import smtplib
 import time
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
 from email.utils import formataddr
 from http.server import BaseHTTPRequestHandler
 from pathlib import Path
 
+from board_referral_email import SUPPORT_EMAIL, build_email
 
-SUPPORT_EMAIL = "support@bemahealth.org"
-POSTAL_ADDRESS = ""
+
 SEND_TIMES = []
 ALLOWED_FIELDS = {
     "recipient_first_name",
@@ -54,80 +51,6 @@ def _send_json(handler, status, payload):
 
 def _generic_error(handler, status=400):
     _send_json(handler, status, {"success": False, "message": "Unable to process referral."})
-
-
-def _build_email(data, plan):
-    first_name = html.escape(data["recipient_first_name"])
-    last_name = html.escape(data["recipient_last_name"])
-    full_name = f"{first_name} {last_name}"
-    plan_name = html.escape(plan["plan_name"])
-    fee = html.escape(plan["program_service_fee"])
-    interval = html.escape(plan["billing_interval"])
-    checkout_url = plan["stripe_url"]
-    quantity = int(data.get("addon_quantity") or "1")
-
-    lines = [
-        f"Hello {data['recipient_first_name']},",
-        "",
-        "BEMA Health Incorporated is a Florida nonprofit that coordinates access to care.",
-        "",
-        f"Plan: {plan['plan_name']}",
-        f"Program service fee: {plan['program_service_fee']} per {plan['billing_interval']}",
-    ]
-    links = [("Continue to checkout", checkout_url)]
-
-    if plan["plan_id"] == "family-add-on" and quantity > 1:
-        lines.extend([
-            "",
-            f"Quantity needed: {quantity}",
-            "This add-on covers each member beyond the 4 included in Family Membership.",
-        ])
-    elif plan["audience"] == "employer":
-        lines.extend([
-            "",
-            "Both payments are required.",
-            f"Enrollment setup fee: {plan['setup_fee_amount']} as a one time payment.",
-            f"Group membership: {plan['program_service_fee']} as a recurring monthly payment.",
-        ])
-        links = [
-            ("Continue to enrollment setup", plan["setup_fee_url"]),
-            ("Continue to group membership", checkout_url),
-        ]
-
-    lines.extend([
-        "",
-        "Reply to support@bemahealth.org with questions.",
-        "Please do not include health information in any reply.",
-    ])
-    if POSTAL_ADDRESS:
-        lines.extend(["", POSTAL_ADDRESS])
-
-    link_html = "".join(
-        f'<p><a href="{html.escape(url, quote=True)}">{html.escape(label)}</a></p>'
-        for label, url in links
-    )
-    extra_html = ""
-    if plan["plan_id"] == "family-add-on" and quantity > 1:
-        extra_html = f"<p>Quantity needed: {quantity}</p><p>This add-on covers each member beyond the 4 included in Family Membership.</p>"
-    elif plan["audience"] == "employer":
-        extra_html = (
-            f"<p><strong>Both payments are required.</strong></p>"
-            f"<p>Enrollment setup fee: {html.escape(plan['setup_fee_amount'])} as a one time payment.</p>"
-            f"<p>Group membership: {fee} as a recurring monthly payment.</p>"
-        )
-    postal_html = f"<p>{html.escape(POSTAL_ADDRESS)}</p>" if POSTAL_ADDRESS else ""
-    html_body = (
-        f"<p>Hello {full_name},</p>"
-        "<p>BEMA Health Incorporated is a Florida nonprofit that coordinates access to care.</p>"
-        f"<p>Plan: <strong>{plan_name}</strong><br />Program service fee: {fee} per {interval}</p>"
-        f"{extra_html}{link_html}"
-        "<p>Reply to support@bemahealth.org with questions.<br />Please do not include health information in any reply.</p>"
-        f"{postal_html}"
-    )
-    message = MIMEMultipart("alternative")
-    message.attach(MIMEText("\n".join(lines), "plain"))
-    message.attach(MIMEText(html_body, "html"))
-    return message
 
 
 class handler(BaseHTTPRequestHandler):
@@ -188,7 +111,7 @@ class handler(BaseHTTPRequestHandler):
             if not gmail_address or not gmail_app_password:
                 return _generic_error(self, 500)
 
-            email_message = _build_email(data, plan)
+            email_message = build_email(data, plan)
             email_message["From"] = formataddr(("BEMA Health", gmail_address))
             email_message["To"] = data["recipient_email"]
             email_message["Reply-To"] = SUPPORT_EMAIL

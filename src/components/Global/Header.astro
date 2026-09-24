@@ -1,5 +1,6 @@
 ---
 import Navigation from "./Navigation.astro";
+import { DONATE_URL } from "../../config/giving";
 ---
 
 <header class="sticky top-0 z-50 w-full border-b border-bema-khaki/40 bg-bema-green">
@@ -9,8 +10,16 @@ import Navigation from "./Navigation.astro";
     </a>
 
     <div class="flex items-center gap-2 lg:gap-3">
-      <Navigation />
-      <!-- TODO: Replace with live phone number at ops launch -->
+      <Navigation />{DONATE_URL && (
+        <a
+          href={DONATE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex min-h-11 items-center justify-center rounded-md border border-bema-khaki bg-bema-khaki px-4 py-2 text-sm font-semibold text-bema-green transition-colors duration-200 hover:border-bema-khaki-light hover:bg-bema-khaki-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bema-khaki sm:px-5"
+        >
+          Donate
+        </a>
+      )} <!-- TODO: Replace with live phone number at ops launch -->
       <a
         href="tel:+16893256672"
         class="inline-flex min-h-11 items-center justify-center rounded-md border border-bema-white bg-bema-white px-4 py-2 text-sm font-medium text-bema-green transition-colors duration-200 hover:border-bema-khaki hover:bg-bema-khaki-light focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-bema-khaki sm:px-5"

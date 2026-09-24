@@ -1,4 +1,6 @@
 ---
+import { DONATE_URL, FDACS_CONTACT, FDACS_DISCLOSURE, FDACS_REGISTRATION_NUMBER } from "../../config/giving";
+
 const footerNav = [
   { text: "About", href: "/about" },
   { text: "Services", href: "/services" },
@@ -7,6 +9,7 @@ const footerNav = [
   { text: "Blog", href: "/blog" },
   { text: "Get Started", href: "/get-started" },
   { text: "Contact", href: "/contact" },
+  ...(DONATE_URL ? [{ text: "Donate", href: DONATE_URL, external: true }] : []),
 ];
 
 const legalNav = [
@@ -22,7 +25,13 @@ const legalNav = [
         <a href="/" class="font-display text-3xl font-bold text-bema-white" aria-label="BEMA home">BEMA</a>
         <p class="mt-5 max-w-sm text-bema-white/85">BEMA exists so that working families in Florida never have to choose between the care they need and the life they are trying to build.</p>
         <p class="mt-5 text-sm font-medium text-bema-white">A Florida 501(c)3 Nonprofit Organization</p>
-        <!-- TODO: Add EIN and registration number post-incorporation -->
+        <!-- TODO: Add EIN and registration number post-incorporation -->{DONATE_URL && FDACS_DISCLOSURE && FDACS_REGISTRATION_NUMBER && FDACS_CONTACT && (
+          <div class="mt-6 max-w-sm space-y-2 text-sm leading-6 text-bema-white/85">
+            <p class="uppercase">{FDACS_DISCLOSURE}</p>
+            <p>{FDACS_REGISTRATION_NUMBER}</p>
+            <p>{FDACS_CONTACT}</p>
+          </div>
+        )}
       </div>
 
       <nav aria-label="Footer navigation">
@@ -30,7 +39,12 @@ const legalNav = [
         <ul class="mt-5 space-y-3">
           {footerNav.map((item) => (
             <li>
-              <a class="text-bema-white/85 transition-colors hover:text-bema-khaki" href={item.href}>{item.text}</a>
+              <a
+                class="text-bema-white/85 transition-colors hover:text-bema-khaki"
+                href={item.href}
+                target={item.external ? "_blank" : undefined}
+                rel={item.external ? "noopener noreferrer" : undefined}
+              >{item.text}</a>
             </li>
           ))}
         </ul>

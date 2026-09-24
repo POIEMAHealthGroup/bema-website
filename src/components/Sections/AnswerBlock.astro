@@ -1,0 +1,80 @@
+---
+export interface Props {
+  question: string;
+  answer: string;
+  items: string[];
+  listType?: "ordered" | "unordered";
+  headingLevel?: "h2" | "h3";
+  schemaMode?: "faq" | "speakable" | "none";
+}
+
+const {
+  question,
+  answer,
+  items,
+  listType = "unordered",
+  headingLevel = "h2",
+  schemaMode = "none",
+} = Astro.props;
+
+const questionText = question.trim();
+const answerText = answer.trim().replace(/\s+/g, " ");
+const listItems = items.map((item) => item.trim().replace(/\s+/g, " "));
+const wordCount = answerText.split(/\s+/).length;
+if (!questionText.endsWith("?") || wordCount < 40 || wordCount > 60) {
+  throw new Error("AnswerBlock requires a question and an answer of 40 to 60 words.");
+}
+if (listItems.length < 3 || listItems.length > 5 || listItems.some((item) => !item)) {
+  throw new Error("AnswerBlock requires 3 to 5 nonempty list items.");
+}
+if (!["ordered", "unordered"].includes(listType)
+  || !["h2", "h3"].includes(headingLevel)
+  || !["faq", "speakable", "none"].includes(schemaMode)) {
+  throw new Error("AnswerBlock received an unsupported display or schema option.");
+}
+
+const Heading = headingLevel;
+const List = listType === "ordered" ? "ol" : "ul";
+const sentences = new Intl.Segmenter("en", { granularity: "sentence" }).segment(answerText);
+const firstSentence = sentences[Symbol.iterator]().next().value?.segment || answerText;
+const remainder = answerText.slice(firstSentence.length);
+const schema = schemaMode === "faq" ? {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [{
+    "@type": "Question",
+    name: questionText,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: [answerText, ...listItems].join(" "),
+    },
+  }],
+} : schemaMode === "speakable" ? {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  speakable: {
+    "@type": "SpeakableSpecification",
+    cssSelector: ["#quick-answer"],
+  },
+} : null;
+---
+
+<!-- Use once per page so the block and heading identifiers remain unique. -->
+<aside id="quick-answer" aria-labelledby="quick-answer-question" class="container my-8 md:my-12">
+  <div class="min-h-80 rounded-lg border border-bema-khaki/40 bg-bema-khaki-light/20 p-6 text-bema-green md:p-8">
+    <div class="prose prose-lg max-w-3xl prose-headings:text-bema-green prose-p:text-bema-green/85 prose-li:text-bema-green/85">
+      <Heading id="quick-answer-question" class="mt-0 text-bema-green-dark">{questionText}</Heading>
+      <p class="answer-block-answer"><span class="answer-block-opening">{firstSentence}</span>{remainder}</p>
+      <List class:list={["mb-0 space-y-2 pl-6", listType === "ordered" ? "list-decimal" : "list-disc"]}>
+        {listItems.map((item) => <li>{item}</li>)}
+      </List>
+    </div>
+  </div>
+</aside>
+{schema && <script type="application/ld+json" set:html={JSON.stringify(schema).replace(/</g, "\\u003c")} />}
+
+<style>
+  .answer-block-answer .answer-block-opening {
+    font-weight: 700;
+  }
+</style>

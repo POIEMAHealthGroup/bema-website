@@ -4,8 +4,8 @@ from email.mime.text import MIMEText
 
 
 SUPPORT_EMAIL = "support@bemahealth.org"
-# Whether a postal address is required in outbound email is an open legal question.
-POSTAL_ADDRESS = ""
+# The address is included as a mailing address in outbound email.
+POSTAL_ADDRESS = "BEMA Health Incorporated\n580 Lexington Green Lane\nSanford, FL 32771"
 
 
 def build_email(data, plan):
@@ -52,7 +52,7 @@ def build_email(data, plan):
         "Please do not include health information in any reply.",
     ])
     if POSTAL_ADDRESS:
-        lines.extend(["", POSTAL_ADDRESS])
+        lines.extend(["", "Mailing address:", POSTAL_ADDRESS])
 
     link_html = "".join(
         f'<p><a href="{html.escape(url, quote=True)}">{html.escape(label)}</a></p>'
@@ -67,7 +67,12 @@ def build_email(data, plan):
             f"<p>Enrollment setup fee: {html.escape(plan['setup_fee_amount'])} as a one time payment.</p>"
             f"<p>Group membership: {fee} as a recurring monthly payment.</p>"
         )
-    postal_html = f"<p>{html.escape(POSTAL_ADDRESS)}</p>" if POSTAL_ADDRESS else ""
+    postal_html = (
+        f'<p style="color:#666;font-size:0.9em">Mailing address:<br />'
+        f'{html.escape(POSTAL_ADDRESS).replace(chr(10), "<br />")}</p>'
+        if POSTAL_ADDRESS
+        else ""
+    )
     html_body = (
         f"<p>Hello {full_name},</p>"
         "<p>BEMA Health Incorporated is a Florida nonprofit that coordinates access to care.</p>"

@@ -1,11 +1,11 @@
 // I must supply it.
-export const DONATE_URL = "";
+export const DONATE_URL = "https://donate.stripe.com/7sYcN504cegS0FBaJd2go09";
 
 // I must supply it.
-export const FDACS_REGISTRATION_NUMBER = "";
+export const FDACS_REGISTRATION_NUMBER = "CH85015";
 
 // I must supply it.
-export const FDACS_DISCLOSURE = "";
+export const FDACS_DISCLOSURE = "A COPY OF THE OFFICIAL REGISTRATION AND FINANCIAL INFORMATION MAY BE OBTAINED FROM THE DIVISION OF CONSUMER SERVICES BY CALLING TOLL-FREE (800-435-7352) WITHIN THE STATE. REGISTRATION DOES NOT IMPLY ENDORSEMENT, APPROVAL, OR RECOMMENDATION BY THE STATE.";
 
 // I must supply it.
-export const FDACS_CONTACT = "";
+export const FDACS_CONTACT = "Registration information is available at FDACS.gov";

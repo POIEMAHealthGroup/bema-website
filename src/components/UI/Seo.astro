@@ -69,7 +69,7 @@ const articleSchema = {
   "@type": "Article",
   headline: articleTitle,
   ...(hasAuthor && articleEntry?.data.author ? {
-    author: { "@type": "Organization", name: articleEntry.data.author },
+    author: { "@type": "Person", name: articleEntry.data.author },
   } : {}),
   ...(hasPublicationDate && articleEntry?.data.pubDate ? {
     datePublished: articleEntry.data.pubDate.toISOString(),

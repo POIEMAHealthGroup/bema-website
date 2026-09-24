@@ -11,6 +11,7 @@ Allow: /
 Disallow: /sermons
 Disallow: /events
 Disallow: /giving
+Disallow: /board
 Sitemap: ${site}/sitemap-index.xml
 `,
     {

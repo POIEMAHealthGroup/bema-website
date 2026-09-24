@@ -7,7 +7,7 @@ const site =
   process.env.PUBLIC_SITE_URL ||
   (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://bema-website-tau.vercel.app');
 
-const hiddenRoutes = ['/sermons', '/events', '/giving'];
+const hiddenRoutes = ['/sermons', '/events', '/giving', '/board'];
 
 export default defineConfig({
   site,

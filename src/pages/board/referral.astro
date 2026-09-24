@@ -1,0 +1,125 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHeader from "../../components/Sections/PageHeader.astro";
+import Button from "../../components/UI/Button.astro";
+
+const safePlans = [
+  { plan_id: "adult-individual", plan_name: "Adult Individual Membership", audience: "individual", program_service_fee: "$300.00", billing_interval: "month", notes: "" },
+  { plan_id: "child-individual", plan_name: "Child Individual Membership", audience: "individual", program_service_fee: "$150.00", billing_interval: "month", notes: "May be enrolled without an accompanying adult membership" },
+  { plan_id: "family", plan_name: "Family Membership", audience: "individual", program_service_fee: "$500.00", billing_interval: "month", notes: "Covers up to 4 members" },
+  { plan_id: "family-add-on", plan_name: "Family Membership Add-On", audience: "individual", program_service_fee: "$150.00", billing_interval: "month", notes: "Covers each additional member beyond 4" },
+  { plan_id: "employer-2-10", plan_name: "Employer Group Membership (2 to 10 Employees)", audience: "employer", program_service_fee: "$500.00", billing_interval: "month", notes: "" },
+  { plan_id: "employer-11-25", plan_name: "Employer Group Membership (11 to 25 Employees)", audience: "employer", program_service_fee: "$2,200.00", billing_interval: "month", notes: "" },
+  { plan_id: "employer-26-plus", plan_name: "Employer Group Membership (26 or More Employees)", audience: "employer", program_service_fee: "$4,550.00", billing_interval: "month", notes: "" },
+];
+---
+
+<BaseLayout title="Board Referral" description="Internal referral tool for BEMA board members." noindex>
+  <PageHeader title="Board Referral" subtitle="Internal referral tool for BEMA board members." />
+
+  <section class="section-pad bg-bema-white">
+    <div class="container">
+      <form id="board-referral-form" action="/api/board-referral" method="post" class="card mx-auto max-w-3xl space-y-6 p-6 md:p-8">
+        <div>
+          <label for="recipient-first-name" class="mb-2 block text-sm font-medium text-bema-green">Recipient first name</label>
+          <input id="recipient-first-name" name="recipient_first_name" type="text" required autocomplete="given-name" class="w-full rounded-md border border-bema-khaki/60 bg-bema-white px-4 py-3 text-bema-green" />
+        </div>
+
+        <div>
+          <label for="recipient-last-name" class="mb-2 block text-sm font-medium text-bema-green">Recipient last name</label>
+          <input id="recipient-last-name" name="recipient_last_name" type="text" required autocomplete="family-name" class="w-full rounded-md border border-bema-khaki/60 bg-bema-white px-4 py-3 text-bema-green" />
+        </div>
+
+        <div>
+          <label for="recipient-email" class="mb-2 block text-sm font-medium text-bema-green">Recipient email</label>
+          <input id="recipient-email" name="recipient_email" type="email" required autocomplete="email" class="w-full rounded-md border border-bema-khaki/60 bg-bema-white px-4 py-3 text-bema-green" />
+        </div>
+
+        <div>
+          <label for="recipient-phone" class="mb-2 block text-sm font-medium text-bema-green">Recipient phone (optional)</label>
+          <input id="recipient-phone" name="recipient_phone" type="tel" autocomplete="tel" class="w-full rounded-md border border-bema-khaki/60 bg-bema-white px-4 py-3 text-bema-green" />
+        </div>
+
+        <div>
+          <label for="plan-id" class="mb-2 block text-sm font-medium text-bema-green">Plan</label>
+          <select id="plan-id" name="plan_id" required class="w-full rounded-md border border-bema-khaki/60 bg-bema-white px-4 py-3 text-bema-green">
+            <option value="">Please select</option>
+            {safePlans.map((plan) => (
+              <option value={plan.plan_id}>{plan.plan_name} | {plan.program_service_fee} per {plan.billing_interval}{plan.notes ? ` | ${plan.notes}` : ""}</option>
+            ))}
+          </select>
+        </div>
+
+        <div id="add-on-quantity-wrap" class="hidden">
+          <label for="add-on-quantity" class="mb-2 block text-sm font-medium text-bema-green">Add-on quantity</label>
+          <input id="add-on-quantity" name="addon_quantity" type="number" min="1" value="1" class="w-full rounded-md border border-bema-khaki/60 bg-bema-white px-4 py-3 text-bema-green" />
+        </div>
+
+        <label class="flex items-start gap-3 text-sm font-medium text-bema-green">
+          <input name="consent" type="checkbox" value="true" required class="mt-1 h-4 w-4 rounded border-bema-khaki text-bema-green" />
+          <span>This person asked BEMA to contact them about membership.</span>
+        </label>
+
+        <div>
+          <label for="board-member-name" class="mb-2 block text-sm font-medium text-bema-green">Board member name</label>
+          <input id="board-member-name" name="board_member_name" type="text" required autocomplete="name" class="w-full rounded-md border border-bema-khaki/60 bg-bema-white px-4 py-3 text-bema-green" />
+        </div>
+
+        <div>
+          <label for="access-password" class="mb-2 block text-sm font-medium text-bema-green">Access password</label>
+          <input id="access-password" name="password" type="password" required autocomplete="current-password" class="w-full rounded-md border border-bema-khaki/60 bg-bema-white px-4 py-3 text-bema-green" />
+        </div>
+
+        <p class="rounded-md border border-bema-khaki/40 bg-bema-khaki-light/20 p-3 text-sm font-medium text-bema-green">
+          Please do not include personal health information in this form.
+        </p>
+
+        <Button type="submit">Send Referral</Button>
+        <p id="board-referral-error" class="hidden text-sm font-medium text-bema-green" role="alert">Something went wrong. Please try again.</p>
+      </form>
+
+      <div id="board-referral-success" class="card mx-auto mt-8 hidden max-w-3xl p-6 text-bema-green" role="status">
+        Referral sent successfully.
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const form = document.querySelector<HTMLFormElement>("#board-referral-form");
+    const plan = document.querySelector<HTMLSelectElement>("#plan-id");
+    const addOnWrap = document.querySelector<HTMLElement>("#add-on-quantity-wrap");
+    const errorMessage = document.querySelector<HTMLElement>("#board-referral-error");
+    const successMessage = document.querySelector<HTMLElement>("#board-referral-success");
+    const password = document.querySelector<HTMLInputElement>("#access-password");
+    const submitButton = form?.querySelector<HTMLButtonElement>('button[type="submit"]');
+
+    plan?.addEventListener("change", () => {
+      const showAddOn = plan.value === "family-add-on";
+      addOnWrap?.classList.toggle("hidden", !showAddOn);
+    });
+
+    form?.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!submitButton || !errorMessage || !successMessage) return;
+      errorMessage.classList.add("hidden");
+      submitButton.disabled = true;
+      const payload = Object.fromEntries(new FormData(form));
+
+      try {
+        const response = await fetch("/api/board-referral", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        const result = await response.json();
+        if (!response.ok || !result.success) throw new Error("Referral failed");
+        form.classList.add("hidden");
+        successMessage.classList.remove("hidden");
+        if (password) password.value = "";
+      } catch {
+        submitButton.disabled = false;
+        errorMessage.classList.remove("hidden");
+      }
+    });
+  </script>
+</BaseLayout>

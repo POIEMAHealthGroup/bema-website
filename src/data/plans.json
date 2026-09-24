@@ -1,0 +1,74 @@
+[
+  {
+    "plan_id": "adult-individual",
+    "plan_name": "Adult Individual Membership",
+    "audience": "individual",
+    "program_service_fee": "$300.00",
+    "billing_interval": "month",
+    "stripe_url": "https://buy.stripe.com/eVq7sL8AI8Wy3RNdVp2go00",
+    "notes": ""
+  },
+  {
+    "plan_id": "child-individual",
+    "plan_name": "Child Individual Membership",
+    "audience": "individual",
+    "program_service_fee": "$150.00",
+    "billing_interval": "month",
+    "stripe_url": "https://buy.stripe.com/3cI14n8AIgp0coj4kP2go01",
+    "notes": "May be enrolled without an accompanying adult membership"
+  },
+  {
+    "plan_id": "family",
+    "plan_name": "Family Membership",
+    "audience": "individual",
+    "program_service_fee": "$500.00",
+    "billing_interval": "month",
+    "stripe_url": "https://buy.stripe.com/eVq4gzcQYb4G8839F92go02",
+    "notes": "Covers up to 4 members"
+  },
+  {
+    "plan_id": "family-add-on",
+    "plan_name": "Family Membership Add-On",
+    "audience": "individual",
+    "program_service_fee": "$150.00",
+    "billing_interval": "month",
+    "stripe_url": "https://buy.stripe.com/5kQ3cv5ow1u65ZV9F92go03",
+    "notes": "Covers each additional member beyond 4"
+  },
+  {
+    "plan_id": "employer-2-10",
+    "plan_name": "Employer Group Membership (2 to 10 Employees)",
+    "audience": "employer",
+    "program_service_fee": "$500.00",
+    "billing_interval": "month",
+    "stripe_url": "https://buy.stripe.com/bJecN57wE7Su2NJ3gL2go06",
+    "setup_fee_label": "Employer Enrollment Setup Fee (2 to 10 Employees)",
+    "setup_fee_amount": "$1,000.00",
+    "setup_fee_url": "https://buy.stripe.com/7sY28r6sA2ya5ZV7x12go04",
+    "notes": ""
+  },
+  {
+    "plan_id": "employer-11-25",
+    "plan_name": "Employer Group Membership (11 to 25 Employees)",
+    "audience": "employer",
+    "program_service_fee": "$2,200.00",
+    "billing_interval": "month",
+    "stripe_url": "https://buy.stripe.com/9B6bJ1g3adcOewrg3x2go07",
+    "setup_fee_label": "Employer Enrollment Setup Fee (11 or More Employees)",
+    "setup_fee_amount": "$2,000.00",
+    "setup_fee_url": "https://buy.stripe.com/eVqdR918g7Su9c73gL2go05",
+    "notes": ""
+  },
+  {
+    "plan_id": "employer-26-plus",
+    "plan_name": "Employer Group Membership (26 or More Employees)",
+    "audience": "employer",
+    "program_service_fee": "$4,550.00",
+    "billing_interval": "month",
+    "stripe_url": "https://buy.stripe.com/bJe6oH7wEgp073ZeZt2go08",
+    "setup_fee_label": "Employer Enrollment Setup Fee (11 or More Employees)",
+    "setup_fee_amount": "$2,000.00",
+    "setup_fee_url": "https://buy.stripe.com/eVqdR918g7Su9c73gL2go05",
+    "notes": ""
+  }
+]

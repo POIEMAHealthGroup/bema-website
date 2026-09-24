@@ -6,7 +6,6 @@ import smtplib
 import time
 from email.utils import formataddr
 from http.server import BaseHTTPRequestHandler
-from pathlib import Path
 
 from board_referral_email import SUPPORT_EMAIL, build_email
 
@@ -26,14 +25,12 @@ ALLOWED_FIELDS = {
 
 
 def _load_plans():
-    source_path = Path(__file__).resolve().parents[1] / "src" / "data" / "plans.ts"
-    source = source_path.read_text(encoding="utf-8")
-    plans = {}
-    for block in re.findall(r"\{([^{}]*)\}", source, re.DOTALL):
-        values = dict(re.findall(r'^\s*([a-z_]+):\s*"([^"]*)",?\s*$', block, re.MULTILINE))
-        if values.get("plan_id"):
-            plans[values["plan_id"]] = values
-    return plans
+    plans_path = os.path.join(os.path.dirname(__file__), "..", "src", "data", "plans.json")
+    with open(plans_path, encoding="utf-8") as plans_file:
+        records = json.load(plans_file)
+    if not isinstance(records, list):
+        raise ValueError("Invalid plan data")
+    return {record["plan_id"]: record for record in records if isinstance(record, dict) and record.get("plan_id")}
 
 
 def _contains_url(value):

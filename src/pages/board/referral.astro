@@ -2,16 +2,9 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageHeader from "../../components/Sections/PageHeader.astro";
 import Button from "../../components/UI/Button.astro";
+import { getSafePlans } from "../../data/plans";
 
-const safePlans = [
-  { plan_id: "adult-individual", plan_name: "Adult Individual Membership", audience: "individual", program_service_fee: "$300.00", billing_interval: "month", notes: "" },
-  { plan_id: "child-individual", plan_name: "Child Individual Membership", audience: "individual", program_service_fee: "$150.00", billing_interval: "month", notes: "May be enrolled without an accompanying adult membership" },
-  { plan_id: "family", plan_name: "Family Membership", audience: "individual", program_service_fee: "$500.00", billing_interval: "month", notes: "Covers up to 4 members" },
-  { plan_id: "family-add-on", plan_name: "Family Membership Add-On", audience: "individual", program_service_fee: "$150.00", billing_interval: "month", notes: "Covers each additional member beyond 4" },
-  { plan_id: "employer-2-10", plan_name: "Employer Group Membership (2 to 10 Employees)", audience: "employer", program_service_fee: "$500.00", billing_interval: "month", notes: "" },
-  { plan_id: "employer-11-25", plan_name: "Employer Group Membership (11 to 25 Employees)", audience: "employer", program_service_fee: "$2,200.00", billing_interval: "month", notes: "" },
-  { plan_id: "employer-26-plus", plan_name: "Employer Group Membership (26 or More Employees)", audience: "employer", program_service_fee: "$4,550.00", billing_interval: "month", notes: "" },
-];
+const safePlans = getSafePlans();
 ---
 
 <BaseLayout title="Board Referral" description="Internal referral tool for BEMA board members." noindex>

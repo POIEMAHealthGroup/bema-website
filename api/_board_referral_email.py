@@ -19,7 +19,7 @@ def build_email(data, plan):
     quantity = int(data.get("addon_quantity") or "1")
 
     lines = [
-        f"Hello {data['recipient_first_name']},",
+        f"Hello {data['recipient_first_name']} {data['recipient_last_name']},",
         "",
         "BEMA Health Incorporated is a Florida nonprofit that coordinates access to care.",
         "",

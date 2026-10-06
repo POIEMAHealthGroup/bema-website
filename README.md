@@ -25,7 +25,11 @@ npm run preview
 - Legal routes: `/privacy-policy`, `/terms`
 - Content collections: `blog`, `team`, `siteInfo`, with reserved inactive collections retained for future use
 - Primary CTA wording for the partner clinic route is `Find a Partner Clinic`
-- Contact form action is a placeholder until a deployment form handler is selected
+- Contact, get started, and board referral forms submit to Python handlers in `api/`
+
+## Local API Testing
+
+Place the required variables in `.env.local`, then run `npx vercel dev` to exercise the Python API handlers locally. `npm run dev` starts Astro only and does not execute the Python handlers.
 
 ## Brand Tokens
 

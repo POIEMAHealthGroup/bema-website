@@ -27,3 +27,6 @@ pnpm-debug.log*
 
 # nodejs
 package-lock.json
+.vercel
+.env*
+__pycache__/

@@ -1,13 +1,25 @@
+from importlib.util import module_from_spec, spec_from_file_location
 import hmac
 import json
 import os
 import re
 import smtplib
+import sys
 import time
 from email.utils import formataddr
 from http.server import BaseHTTPRequestHandler
+from pathlib import Path
 
-from board_referral_email import SUPPORT_EMAIL, build_email
+_EMAIL_MODULE_PATH = Path(__file__).with_name("_board_referral_email.py")
+_EMAIL_SPEC = spec_from_file_location("_board_referral_email", _EMAIL_MODULE_PATH)
+if _EMAIL_SPEC is None or _EMAIL_SPEC.loader is None:
+    raise ImportError("Unable to load referral email module")
+_EMAIL_MODULE = module_from_spec(_EMAIL_SPEC)
+sys.modules[_EMAIL_SPEC.name] = _EMAIL_MODULE
+_EMAIL_SPEC.loader.exec_module(_EMAIL_MODULE)
+
+SUPPORT_EMAIL = _EMAIL_MODULE.SUPPORT_EMAIL
+build_email = _EMAIL_MODULE.build_email
 
 
 SEND_TIMES = []
@@ -112,7 +124,6 @@ class handler(BaseHTTPRequestHandler):
             email_message["From"] = formataddr(("BEMA Health", gmail_address))
             email_message["To"] = data["recipient_email"]
             email_message["Reply-To"] = SUPPORT_EMAIL
-            email_message["Bcc"] = SUPPORT_EMAIL
             email_message["Subject"] = plan["plan_name"]
 
             # Do not add donation language. This email is not a solicitation.

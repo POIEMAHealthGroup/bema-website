@@ -11,6 +11,13 @@ const hiddenRoutes = ['/sermons', '/events', '/giving', '/board'];
 
 export default defineConfig({
   site,
+  vite: {
+    server: {
+      watch: {
+        ignored: ['**/.vercel/**'],
+      },
+    },
+  },
   integrations: [
     tailwind(),
     sitemap({

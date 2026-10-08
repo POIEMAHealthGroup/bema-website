@@ -23,6 +23,8 @@ build_email = _EMAIL_MODULE.build_email
 
 
 SEND_TIMES = []
+# This in process password failure counter resets on cold start.
+FAILED_PASSWORD_TIMES = {}
 ALLOWED_FIELDS = {
     "recipient_first_name",
     "recipient_last_name",
@@ -85,8 +87,18 @@ class handler(BaseHTTPRequestHandler):
 
             password = str(data.get("password", ""))
             configured_password = os.environ.get("BOARD_REFERRAL_PASSWORD", "")
+            client_ip = self.headers.get("x-forwarded-for", "").split(",", 1)[0].strip()
+            now = time.time()
+            failures = [stamp for stamp in FAILED_PASSWORD_TIMES.get(client_ip, []) if now - stamp < 900]
+            if failures:
+                FAILED_PASSWORD_TIMES[client_ip] = failures
+            else:
+                FAILED_PASSWORD_TIMES.pop(client_ip, None)
+            if len(failures) >= 5:
+                return _generic_error(self)
             if not configured_password or not hmac.compare_digest(password, configured_password):
-                return _generic_error(self, 401)
+                FAILED_PASSWORD_TIMES[client_ip] = failures + [now]
+                return _generic_error(self)
 
             plans = _load_plans()
             plan = plans.get(str(data.get("plan_id", "")))
@@ -112,7 +124,7 @@ class handler(BaseHTTPRequestHandler):
             now = time.time()
             SEND_TIMES[:] = [stamp for stamp in SEND_TIMES if now - stamp < 3600]
             if len(SEND_TIMES) >= 10:
-                return _generic_error(self, 429)
+                return _generic_error(self)
             SEND_TIMES.append(now)
 
             gmail_address = os.environ.get("GMAIL_ADDRESS", "").strip()

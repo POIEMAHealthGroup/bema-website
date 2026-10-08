@@ -87,7 +87,8 @@ class handler(BaseHTTPRequestHandler):
 
             password = str(data.get("password", ""))
             configured_password = os.environ.get("BOARD_REFERRAL_PASSWORD", "")
-            client_ip = self.headers.get("x-forwarded-for", "").split(",", 1)[0].strip()
+            # Cloudflare provides the visitor IP; forwarded-for may contain its edge IP.
+            client_ip = self.headers.get("cf-connecting-ip", "").strip() or self.headers.get("x-forwarded-for", "").split(",", 1)[0].strip()
             now = time.time()
             failures = [stamp for stamp in FAILED_PASSWORD_TIMES.get(client_ip, []) if now - stamp < 900]
             if failures:

@@ -1,3 +1,5 @@
+Superseded. Written against the pre October 2026 placeholder policy and not used. See commit D3.
+
 # Privacy policy referral addendum proposal
 
 This is proposed copy based on the current `src/pages/privacy-policy.astro` and the implemented board referral flow. It does not change the published policy.

@@ -35,12 +35,13 @@ const safePlans = getSafePlans();
 
         <div>
           <label for="plan-id" class="mb-2 block text-sm font-medium text-bema-green">Plan</label>
-          <select id="plan-id" name="plan_id" required class="w-full rounded-md border border-bema-khaki/60 bg-bema-white px-4 py-3 text-bema-green">
+          <select id="plan-id" name="plan_id" required aria-describedby="plan-guardian-hint" class="w-full rounded-md border border-bema-khaki/60 bg-bema-white px-4 py-3 text-bema-green">
             <option value="">Please select</option>
             {safePlans.map((plan) => (
               <option value={plan.plan_id}>{plan.plan_name} | {plan.program_service_fee} per {plan.billing_interval}{plan.notes ? ` | ${plan.notes}` : ""}</option>
             ))}
           </select>
+          <p id="plan-guardian-hint" class="mt-2 text-sm font-medium text-bema-green">For a Child Individual Membership, enter the parent or guardian as the recipient.</p>
         </div>
 
         <div id="add-on-quantity-wrap" class="hidden">

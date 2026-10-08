@@ -2,7 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import PageHeader from "../components/Sections/PageHeader.astro";
 
-const POLICY_EFFECTIVE_DATE = "October 7, 2026";
+const POLICY_EFFECTIVE_DATE = "October 8, 2026";
 const SHOW_CLARITY_SECTION = true;
 ---
 
@@ -12,7 +12,7 @@ const SHOW_CLARITY_SECTION = true;
 >
   <PageHeader
     title="Privacy Policy"
-    subtitle="This policy explains how information is handled when you visit this website or contact BEMA Health Incorporated."
+    subtitle="This policy explains how information is handled when you visit this website, contact BEMA Health Incorporated, or are referred to BEMA by a member of its board."
   />
 
   <section class="section-pad bg-bema-white">
@@ -36,6 +36,8 @@ const SHOW_CLARITY_SECTION = true;
         <h3>Get Started form for employers</h3>
         <p>The employer form includes a form type value, contact name, business name, email address, optional phone number, number of employees, work arrangement, preferred method of contact, and an optional message.</p>
 
+        <p>Members of BEMA's board may also refer a person who has asked BEMA to contact them about membership. A referral includes that person's first and last name, email address, optional phone number, and the membership plan they asked about, along with the name of the board member making the referral. Referrals are made through a password protected form used only by board members.</p>
+
         <p>Form submissions are delivered by email to a BEMA Google Workspace mailbox. Submissions are processed by our hosting provider, Vercel, on their way to email. This website does not keep a database of form submissions. We use the information to respond to your inquiry and follow up with you.</p>
         <p><strong>Please do not include personal health information in any form on this site.</strong> Do not include medical or health details, diagnoses, or payment or account numbers in any form submission.</p>
 
@@ -44,6 +46,7 @@ const SHOW_CLARITY_SECTION = true;
         {SHOW_CLARITY_SECTION && <p>Microsoft Clarity collects information about how visitors interact with pages.</p>}
         <p>To display our fonts, your browser requests font resources from Google. Google receives standard request information such as your IP address and browser details.</p>
         <p>Our hosting and network providers also process standard technical information needed to deliver and protect the site. This may include your IP address, browser and device details, pages requested, and timestamps.</p>
+        <p>To protect the referral form from misuse, the server briefly uses the IP address of each request to limit repeated failed attempts. This information is held only in temporary memory and is not saved.</p>
 
         <h2>Cookies and similar technologies</h2>
         <p>Google Analytics uses cookies and similar technologies to provide the functions described in this policy.</p>
@@ -147,6 +150,7 @@ const SHOW_CLARITY_SECTION = true;
 
         <h2>How we use information</h2>
         <p>We use information to respond to inquiries, follow up with people who contact us, understand and improve the site, maintain security, and comply with legal obligations.</p>
+        <p>When a board member makes a referral, we use that information to send the person one email describing the plan they asked about, its fees, and links to enroll. A copy of that email is kept in BEMA's support mailbox, the same way messages from our other forms are. Referral information is not stored in a separate database, and we do not use it to send marketing or add anyone to a mailing list.</p>
 
         <h2>Who we share information with</h2>
         <p>We share information with service providers that help us operate the site and communicate with visitors. These providers include:</p>
@@ -171,6 +175,7 @@ const SHOW_CLARITY_SECTION = true;
 
         <h2>Children</h2>
         <p>This site is not directed to children under 18.</p>
+        <p>Referrals for a Child Individual Membership are addressed to the child's parent or guardian. The referral form does not ask for information about the child.</p>
         {/* CONFIRM: founders and counsel review wording; BEMA serves families and Get Started asks who the request is for, including Child */}
 
         <h2>Links to other sites</h2>

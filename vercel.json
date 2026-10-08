@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/card",
+      "destination": "/?utm_source=business_card&utm_medium=print&utm_campaign=bema_card",
+      "permanent": false
+    },
+    {
+      "source": "/give",
+      "destination": "https://donate.stripe.com/7sYcN504cegS0FBaJd2go09?utm_source=business_card&utm_medium=print&utm_campaign=bema_card",
+      "permanent": false
+    }
+  ]
+}

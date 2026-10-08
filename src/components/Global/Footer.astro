@@ -25,7 +25,7 @@ const legalNav = [
         <a href="/" class="font-display text-3xl font-bold text-bema-white" aria-label="BEMA home">BEMA</a>
         <p class="mt-5 max-w-sm text-bema-white/85">BEMA exists so that working families in Florida never have to choose between the care they need and the life they are trying to build.</p>
         <p class="mt-5 text-sm font-medium text-bema-white">A Florida 501(c)(3) Nonprofit Organization</p>
-        <!-- TODO: Add EIN and registration number post-incorporation -->{DONATE_URL && FDACS_DISCLOSURE && FDACS_REGISTRATION_NUMBER && FDACS_CONTACT && (
+        {DONATE_URL && FDACS_DISCLOSURE && FDACS_REGISTRATION_NUMBER && FDACS_CONTACT && (
           <div class="mt-6 max-w-sm space-y-2 text-sm leading-6 text-bema-white/85">
             <p class="uppercase">{FDACS_DISCLOSURE}</p>
             <p>{FDACS_REGISTRATION_NUMBER}</p>
@@ -68,6 +68,7 @@ const legalNav = [
 
     <div class="mt-12 flex flex-col gap-3 border-t border-bema-khaki/40 pt-6 text-sm text-bema-white/80 md:flex-row md:items-center md:justify-between">
       <p>&copy; 2026 BEMA Health Incorporated. All rights reserved.</p>
+      <a href="/board/referral" rel="nofollow" class="text-sm text-bema-white/80">Board</a>
       <p>Created by Poiema Health Group</p>
     </div>
   </div>
